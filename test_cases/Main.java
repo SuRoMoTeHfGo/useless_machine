@@ -15,8 +15,6 @@ public class Main{
 
 		// colorTest(); FUNGERER IKKE!!! LAG NY!
 
-		ultrasonicTest();
-
 	}
 
 	public static void driveTest() throws Exception {
