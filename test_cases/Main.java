@@ -11,7 +11,7 @@ import lejos.robotics.navigation.DifferentialPilot; // Importing DifferentialPil
 public class Main{
 	public static void main (String[] arg) throws Exception  {
 
-
+		driveTest();
 
 	}
 
@@ -32,7 +32,7 @@ public class Main{
 
 		Motor armMotor = Motor.B // Check correct motor
 
-		armMotor.setSpeed(200); // Value for motorspeeed?
+		armMotor.setSpeed(50); // Value for motorspeeed?
 		armMotor.rotateTo(360); // Value for rotation at up-position?
 		armMotor.rotateTo(180); // Value for rotation at down-position?
 	}
@@ -42,7 +42,7 @@ public class Main{
 
 		Motor armMotor = Motor.C // Check correct motor
 
-		armMotor.setSpeed(200); // Value for motorspeeed?
+		armMotor.setSpeed(50); // Value for motorspeeed?
 		armMotor.rotateTo(360); // Value for rotation at up-position?
 		armMotor.rotateTo(180); // Value for rotation at down-position?
 	}
