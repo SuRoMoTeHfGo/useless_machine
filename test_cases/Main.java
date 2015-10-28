@@ -13,7 +13,7 @@ import lejos.robotics.navigation.DifferentialPilot; // Importing DifferentialPil
 public class Main{
 	public static void main (String[] arg) throws Exception  {
 
-		// colorTest(); FUNGERER IKKE!!! LAG NY!
+		colorTest();
 
 	}
 
@@ -86,7 +86,7 @@ public class Main{
 		Brick brick = BrickFinder.getDefault(); // Register brick
 		Port s4 = brick.getPort("S4"); // Register EV3-uttrasonicsensor port
 		EV3ColorSensor colorSensor = new EV3ColorSensor(s4); // Register EV3-uttrasonicsensor
-		SampleProvider colorLeser = colorSensor; // Register sample provider for EV3-uttrasonicsensor
+		SampleProvider colorLeser = colorSensor.getRGBMode(); // Register sample provider for EV3-uttrasonicsensor
 		float[] colorSample = new float[colorLeser.sampleSize()]; // Register float table for EV3-uttrasonicsensor sample values
 
 		String filename = "colorOutput.txt"; // Filename of output file
