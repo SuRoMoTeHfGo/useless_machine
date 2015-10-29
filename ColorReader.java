@@ -13,7 +13,9 @@ import lejos.robotics.SampleProvider;
 import lejos.hardware.sensor.*;
 
 public class ColorReader{
-
+/*
+*needs update! Touchsensor is to be used instead
+*/
 	private float[] colorSample;
 	private EV3ColorSensor colorSensor;
 	private SampleProvider colorReader;
