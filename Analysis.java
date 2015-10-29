@@ -14,7 +14,8 @@ public class Analysis{
 		this.sounds = sounds;
 		this.iPod = iPod;
 	}
-	public void initialize(){
 
-	}//initialize
+	public boolean checkLever()throws Exception{
+		return leverStatus.getStatus();
+	}
 }//class

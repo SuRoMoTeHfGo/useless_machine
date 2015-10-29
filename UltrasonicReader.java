@@ -4,7 +4,7 @@
 */
 public class UltrasonicReader{
 
-	public UltrasonicReader(s2)
+	public UltrasonicReader()
 	{
 	}
 

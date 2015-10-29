@@ -17,9 +17,8 @@ public class ColorReader{
 	private float[] colorSample;
 	private EV3ColorSensor colorSensor;
 	private SampleProvider colorReader;
-	private Brick brick = BrickFinder.getDefault();
     private Port port;
-	private int value;
+	private double value = 0.01;
 	boolean black = false;
 //contstructor
 	public ColorReader(Port port)
@@ -28,26 +27,18 @@ public class ColorReader{
 	}
 
 	//returns color sample
-	public int getSample()throws Exception{
+	public double getSample()throws Exception{
 		return value;
 	}
+
 //returns status as either black or not black, which translates to lever is hit or not hit.
 	public boolean getStatus()throws Exception{
-
-			readSample();
-			colorReader.fetchSample(colorSample, 0);
-			return colorSample[0]*100 > value;
-	}
-
-	private void readSample()throws Exception{
 		colorSensor = new EV3ColorSensor(port);
 		colorReader = colorSensor.getMode("RGB");
 		colorSample = new float[colorReader.sampleSize()];
+		colorReader.fetchSample(colorSample, 0); // Save values to first position of the EV3-uttrasonicsensor float table
 
-		for (int i = 0; i<100; i++){
-			colorReader.fetchSample(colorSample, 0);
-			value += colorSample[0]*100;
-		}
-		value = value/100 +5;
+		return colorSample[0] > value;
+
 	}
 }//class

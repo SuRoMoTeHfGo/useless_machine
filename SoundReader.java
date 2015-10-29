@@ -21,7 +21,6 @@ public class SoundReader{
 	private float[] soundSample;
 	private Port port;
 	private int value;
-	private Brick brick = BrickFinder.getDefault();
 	boolean volume = false;
 
 	public SoundReader(Port port){
@@ -31,12 +30,8 @@ public class SoundReader{
 		return value;
 	}//getVaule
 
+	//reads sample, returns true or false;
 	public boolean getStatus(){
-		return readSample();
-	}
-
-	//reads sample
-	private boolean readSample(){
 		soundSample = new float[soundReader.sampleSize()];
 		soundSensor = new NXTSoundSensor(port);
 		soundReader = soundSensor.getDBAMode();
