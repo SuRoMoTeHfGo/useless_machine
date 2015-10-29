@@ -5,8 +5,9 @@ import java.util.Random;
 
 public class Commands{
 	Random randomVal;
+	private Analysis brain;
 	//constructor
-	public Commands(){
+	public Commands(Analysis brain){
 
 	}
 }//class

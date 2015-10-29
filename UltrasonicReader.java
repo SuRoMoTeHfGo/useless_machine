@@ -4,4 +4,8 @@
 */
 public class UltrasonicReader{
 
+	public UltrasonicReader(s2)
+	{
+	}
+
 }

@@ -4,11 +4,16 @@
 
 
 public class Analysis{
-	private ColorReader leverStatus = new ColorReader();
-	private UltrasonicReader eyes = new UltrasonicReader();
-	private SoundReader sounds = new SoundReader();
-	private Audioplayer iPod = new Audioplayer();
-
+	private ColorReader leverStatus;
+	private UltrasonicReader eyes;
+	private SoundReader sounds;
+	private Audioplayer iPod;
+	public Analysis(ColorReader leverStatus,UltrasonicReader eyes, SoundReader sounds,Audioplayer iPod){
+		this.leverStatus = leverStatus;
+		this.eyes = eyes;
+		this.sounds = sounds;
+		this.iPod = iPod;
+	}
 	public void initialize(){
 
 	}//initialize
