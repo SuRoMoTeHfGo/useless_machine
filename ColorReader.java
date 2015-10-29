@@ -35,18 +35,8 @@ public class ColorReader{
 	public boolean getStatus()throws Exception{
 
 			readSample();
-
-			while(!black){
 			colorReader.fetchSample(colorSample, 0);
-
-			if (colorSample[0]*100 > value){   //check black value
-				return false;
-			} else {
-				black = true;
-
-			}//else
-		}
-			return true;
+			return colorSample[0]*100 > value;
 	}
 
 	private void readSample()throws Exception{
@@ -55,8 +45,8 @@ public class ColorReader{
 		colorSample = new float[colorReader.sampleSize()];
 
 		for (int i = 0; i<100; i++){
-					colorReader.fetchSample(colorSample, 0);
-					value += colorSample[0]*100;
+			colorReader.fetchSample(colorSample, 0);
+			value += colorSample[0]*100;
 		}
 		value = value/100 +5;
 	}

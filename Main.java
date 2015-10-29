@@ -14,6 +14,7 @@ import lejos.hardware.sensor.*;
 
 public class Main{
 	public static void main(String[]arg)throws Exception{
+
 		Brick brick = BrickFinder.getDefault();
 		Port s1 = brick.getPort("S1"); // colorsensor
 		Port s2 = brick.getPort("S2"); // ultrasonicsensor
