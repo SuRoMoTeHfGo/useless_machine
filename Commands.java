@@ -1,5 +1,7 @@
 /*
 *class Commands for lejos project, "the Useless machine"
+*This class operates with all of the robot's physical movements
+*By developers Elias, Kristoffer, Ole Kristian and Håkon
 */
 import java.io.*;
 
@@ -21,29 +23,33 @@ public class Commands{
 
 			Motor.C.setSpeed(speed);
 			Motor.C.forward(); // Drive one direction
-			Thread.sleep(1000);
+			sleep(1000);
 			Motor.C.backward(); // Drive other direction
-			Thread.sleep(1000);
+			sleep(1000);
 		}
 
-		public void moveArm(int rotation,int motorspeed) {
+		public void moveArm(int rotation,int motorspeed)throws Exception{
 			/* This method moves the "arm" up and then down again */
-
+			//We should consider the option of letting the lever return back to place at a slower pace, or even take a pause at the top
 			// Motor.B
 
 			Motor.B.setSpeed(motorspeed);
 			Motor.B.rotateTo(rotation); // Top: rotateTo(-90)
 		}
 
-		public void moveLever(int rotation) {
-			/* This test moved the lever up and down again */
-
-			// Motor.D
-
+		public void moveLever(int rotation, int ms)throws Exception{
+			/* This method moves the lever up and down again */
+			//It should be considered an option to switch the lever down, and leave it there for a timed delay...
+			//motor D
 			Motor.D.setSpeed(200); // Value for motorspeeed?
 			Motor.D.rotateTo(rotation); // Top: rotateTo(70)
+			sleep(ms);
 		}
 
+	    public void sleep (int ms)throws Exception{
+		//the method sleep is to give the robot a timed delay befor it hits the lever.
+			Thread.sleep(ms);
+		}
 
 
 }//class

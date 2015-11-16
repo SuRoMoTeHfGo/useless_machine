@@ -1,6 +1,7 @@
 /*
 *class SoundReader for lejos project, "the Useless Machine"
 *this class processes data from the sound sensor
+*By developers Elias, Kristoffer, Ole Kristian and Håkon
 */
 import lejos.hardware.motor.*;
 import lejos.hardware.lcd.*;

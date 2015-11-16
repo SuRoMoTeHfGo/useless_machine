@@ -1,6 +1,7 @@
 /*
 *class ColorReader for lejos project, "the Useless machine"
 *this class processes of data from the color sensor
+*By developers Elias, Kristoffer, Ole Kristian and Håkon
 */
 import lejos.hardware.sensor.NXTColorSensor;
 import lejos.hardware.Brick;
@@ -13,24 +14,17 @@ import lejos.robotics.SampleProvider;
 import lejos.hardware.sensor.*;
 
 public class PressureReader{
-/*
-*needs update! Touchsensor is to be used instead
-*/
+
 	private float[] touchSample;
 	private EV3TouchSensor touchSensor;
 	private SampleProvider touchReader;
     private Port port;
 	private double value = 0.01;
 	boolean black = false;
-//contstructor
+//constructor
 	public PressureReader(Port port)
 	{
 		this.port = port;
-	}
-
-	//returns color sample for debugging
-	public double getSample()throws Exception{
-		return value;
 	}
 
 //method checks wether the touch sensor has been hit or not
@@ -42,5 +36,10 @@ public class PressureReader{
 
 		return touchSample[0] > 0;
 
+	}
+
+	//returns sample for debugging, and is not considered a functional method
+	public double getSample()throws Exception{
+		return value;
 	}
 }//class

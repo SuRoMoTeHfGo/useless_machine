@@ -1,6 +1,6 @@
 /*
 *Main class for lejos project, "the Useless machine"
-*By developers Elias, Kristoffer, Ole and Håkon
+*By developers Elias, Kristoffer, Ole Kristian and Håkon
 */
 import lejos.hardware.sensor.NXTColorSensor;
 import lejos.hardware.Brick;
@@ -24,8 +24,14 @@ public class Main{
 		UltrasonicReader eyes = new UltrasonicReader(s3);
 		SoundReader sounds = new SoundReader(s4);
 		Audioplayer iPod = new Audioplayer();
-		Analysis brain = new Analysis(leverStatus,eyes,sounds,iPod);
 		Commands executor = new Commands();
+		Analysis brain = new Analysis(leverStatus,eyes,sounds,iPod,executor);
 
+		/*We might consider a while loop with changing terms, as a way of ending the program sequence
+		*At this point the only desired functionality is for the program to loop infinitely
+		*/
+		while(true){
+			brain.chooseOutcome();
+		}
 	}//void main
 }//class

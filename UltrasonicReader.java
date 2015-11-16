@@ -1,6 +1,7 @@
 /*
 *class UltrasonicReader for lejos project, "the Useless Machine"
 *this class processes data from the ultrasonic sensor
+*By developers Elias, Kristoffer, Ole Kristian and Håkon
 */
 
 import lejos.hardware.sensor.NXTColorSensor;
@@ -24,7 +25,7 @@ public class UltrasonicReader{
 		this.port = port;
 	}
 	//this method provides the status of the airspace directly above the useless machine
-	public boolean triggered(){
+	public boolean registered(){
 		ultrasonicSensor = new EV3UltrasonicSensor(port); // Register EV3-uttrasonicsensor
 		ultrasonicReader = ultrasonicSensor.getDistanceMode(); // Register sample provider for EV3-uttrasonicsensor
 		ultrasonicSample = new float[ultrasonicReader.sampleSize()]; // Register float table for EV3-uttrasonicsensor sample values
