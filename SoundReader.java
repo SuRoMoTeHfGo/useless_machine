@@ -32,7 +32,7 @@ public class SoundReader{
 	}//getVaule
 
 	//reads sample, returns true or false;
-	public boolean getStatus(){
+	public boolean triggered(){
 		soundSample = new float[soundReader.sampleSize()];
 		soundSensor = new NXTSoundSensor(port);
 		soundReader = soundSensor.getDBAMode();
