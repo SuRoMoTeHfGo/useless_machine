@@ -28,13 +28,13 @@ public class PressureReader{
 		this.port = port;
 	}
 
-	//returns color sample
+	//returns color sample for debugging
 	public double getSample()throws Exception{
 		return value;
 	}
 
-//returns status as either black or not black, which translates to lever is hit or not hit.
-	public boolean getStatus()throws Exception{
+//method checks wether the touch sensor has been hit or not
+	public boolean toggled()throws Exception{
 		touchSensor = new EV3TouchSensor(port);
 		touchReader = touchSensor;
 		touchSample = new float[touchReader.sampleSize()]; // Register float table for EV3-touchsensor sample values		colorReader.fetchSample(colorSample, 0); // Save values to first position of the EV3-uttrasonicsensor float table
