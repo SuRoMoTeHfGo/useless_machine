@@ -5,13 +5,13 @@
 import java.util.Random;
 
 public class Analysis{
-	private ColorReader leverStatus;
+	private PressureReader leverStatus;
 	private UltrasonicReader eyes;
 	private SoundReader sounds;
 	private Audioplayer iPod;
 	private Random randomVal;
 
-	public Analysis(ColorReader leverStatus,UltrasonicReader eyes, SoundReader sounds,Audioplayer iPod){
+	public Analysis(PressureReader leverStatus,UltrasonicReader eyes, SoundReader sounds,Audioplayer iPod){
 		this.leverStatus = leverStatus;
 		this.eyes = eyes;
 		this.sounds = sounds;

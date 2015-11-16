@@ -17,7 +17,6 @@ import lejos.hardware.sensor.*;
 public class SoundReader{
 
 
-
 	private SampleProvider soundReader;
 	private	NXTSoundSensor soundSensor;
 	private float[] soundSample;

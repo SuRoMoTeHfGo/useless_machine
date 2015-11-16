@@ -16,16 +16,16 @@ public class Main{
 	public static void main(String[]arg)throws Exception{
 
 		Brick brick = BrickFinder.getDefault();
-		Port s1 = brick.getPort("S1"); // colorsensor
-		Port s2 = brick.getPort("S2"); // ultrasonicsensor
-		Port s3 = brick.getPort("S3"); // soundsensor
+		Port s1 = brick.getPort("S1"); // soundsensor
+		Port s3 = brick.getPort("S3"); // ultrasonicsensor
+		Port s4 = brick.getPort("S4"); // touchsensor
 
-		ColorReader leverStatus = new ColorReader(s1);
-		UltrasonicReader eyes = new UltrasonicReader(s2);
-		SoundReader sounds = new SoundReader(s3);
+		PressureReader leverStatus = new PressureReader(s1);
+		UltrasonicReader eyes = new UltrasonicReader(s3);
+		SoundReader sounds = new SoundReader(s4);
 		Audioplayer iPod = new Audioplayer();
-		Commands executor = new Commands(brain);
 		Analysis brain = new Analysis(leverStatus,eyes,sounds,iPod);
+		Commands executor = new Commands();
 
 	}//void main
 }//class
