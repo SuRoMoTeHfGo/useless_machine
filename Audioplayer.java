@@ -28,19 +28,17 @@ public class AudioPlayer {
 	// Constructor
 	public AudioPlayer(int masterVolume) {
 		this.masterVolume = masterVolume;
-		file = new File("MegaMan.wav");
-	}
-	public int generateSound(File sound) throws Exception {
-		return Sound.playSample(sound, 50);
-	}
-	public void setVolume() throws Exception {
 		Sound.setVolume(masterVolume);
 	}
+	public static int generateSound(File file) throws Exception {
+		return Sound.playSample(file, 50);
+	}
 	
-	private void getSound() throws Exception {
+	public void getSound() {
 		Runnable task = new Runnable() {
 			public void run() {
-				try{
+				try {
+					file = new File("music.wav");
 					int wavfilelength = generateSound(file);
 				} catch (Exception e){
 					System.out.println(e);

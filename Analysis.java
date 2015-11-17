@@ -94,7 +94,7 @@ public class Analysis {
 	*/
 	private void analyzeSpace() throws Exception {
 
-		if(eyes.registered() && getRandomVal(0, 10) < 2){
+		if(eyes.registered() && getRandomVal(0, 3000) < 2){
 			if (getRandomVal(0, 2) > 0.5) {
 				executor.moveLever(0, 0);
 			} else {
