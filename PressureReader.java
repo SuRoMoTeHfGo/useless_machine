@@ -25,17 +25,15 @@ public class PressureReader{
 	public PressureReader(Port port)
 	{
 		this.port = port;
+		touchSensor = new EV3TouchSensor(port);
+		touchReader = touchSensor;
+		touchSample = new float[touchReader.sampleSize()]; // Register float table for EV3-touchsensor sample values
 	}
 
 //method checks wether the touch sensor has been hit or not
 	public boolean toggled()throws Exception{
-		touchSensor = new EV3TouchSensor(port);
-		touchReader = touchSensor;
-		touchSample = new float[touchReader.sampleSize()]; // Register float table for EV3-touchsensor sample values		colorReader.fetchSample(colorSample, 0); // Save values to first position of the EV3-uttrasonicsensor float table
 		touchReader.fetchSample(touchSample, 0); // Save values to first position of the EV3-uttrasonicsensor float table
-
 		return touchSample[0] > 0;
-
 	}
 
 	//returns sample for debugging, and is not considered a functional method

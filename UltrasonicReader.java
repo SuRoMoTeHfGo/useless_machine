@@ -23,12 +23,13 @@ public class UltrasonicReader{
 	public UltrasonicReader(Port port)
 	{
 		this.port = port;
-	}
-	//this method provides the status of the airspace directly above the useless machine
-	public boolean registered(){
 		ultrasonicSensor = new EV3UltrasonicSensor(port); // Register EV3-uttrasonicsensor
 		ultrasonicReader = ultrasonicSensor.getDistanceMode(); // Register sample provider for EV3-uttrasonicsensor
 		ultrasonicSample = new float[ultrasonicReader.sampleSize()]; // Register float table for EV3-uttrasonicsensor sample values
+	}
+	//this method provides the status of the airspace directly above the useless machine
+	public boolean registered(){
+		
 		ultrasonicReader.fetchSample(ultrasonicSample, 0); // Save values to first position of the EV3-uttrasonicsensor float table
 
 

@@ -13,19 +13,19 @@ import lejos.robotics.SampleProvider;
 import lejos.hardware.sensor.*;
 
 public class Main{
-	public static void main(String[]arg)throws Exception{
+	public static void main(String[] args)throws Exception{
 
 		Brick brick = BrickFinder.getDefault();
-		Port s1 = brick.getPort("S1"); // soundsensor
+		// Port s1 = brick.getPort("S1"); // soundsensor
 		Port s3 = brick.getPort("S3"); // ultrasonicsensor
 		Port s4 = brick.getPort("S4"); // touchsensor
 
-		PressureReader leverStatus = new PressureReader(s1);
+		PressureReader leverStatus = new PressureReader(s4);
 		UltrasonicReader eyes = new UltrasonicReader(s3);
-		SoundReader sounds = new SoundReader(s4);
+		// SoundReader sounds = new SoundReader(s1);
 		Audioplayer iPod = new Audioplayer();
 		Commands executor = new Commands();
-		Analysis brain = new Analysis(leverStatus,eyes,sounds,iPod,executor);
+		Analysis brain = new Analysis(leverStatus,eyes,iPod,executor); //sounds
 
 		/*We might consider a while loop with changing terms, as a way of ending the program sequence
 		*At this point the only desired functionality is for the program to loop infinitely
