@@ -1,8 +1,8 @@
-/*
-*class ColorReader for lejos project, "the Useless machine"
-*this class processes of data from the color sensor
-*By developers Elias, Kristoffer, Ole Kristian and Håkon
-*/
+/*************************************************************
+	Class ColorReader for lejos project, "the Useless machine"
+	This class processes of data from the color sensor
+	By developers Elias, Kristoffer, Ole Kristian and Haakon
+**************************************************************/
 import lejos.hardware.sensor.NXTColorSensor;
 import lejos.hardware.Brick;
 import lejos.hardware.port.Port;

@@ -1,8 +1,8 @@
-/*
-*class SoundReader for lejos project, "the Useless Machine"
-*this class processes data from the sound sensor
-*By developers Elias, Kristoffer, Ole Kristian and Håkon
-*/
+/*************************************************************
+	Class SoundReader for lejos project, "the Useless Machine"
+	This class processes data from the sound sensor
+	By developers Elias, Kristoffer, Ole Kristian and Haakon
+**************************************************************/
 import lejos.hardware.motor.*;
 import lejos.hardware.lcd.*;
 import lejos.hardware.sensor.NXTSoundSensor;

@@ -1,9 +1,8 @@
-/*
-*class UltrasonicReader for lejos project, "the Useless Machine"
-*this class processes data from the ultrasonic sensor
-*By developers Elias, Kristoffer, Ole Kristian and Håkon
-*/
-
+/*************************************************************
+	Class UltrasonicReader for lejos project, "the Useless Machine"
+	This class processes data from the ultrasonic sensor
+	By developers Elias, Kristoffer, Ole Kristian and Haakon
+**************************************************************/
 import lejos.hardware.sensor.NXTColorSensor;
 import lejos.hardware.Brick;
 import lejos.hardware.port.Port;

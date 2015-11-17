@@ -1,7 +1,8 @@
-/*
-*Main class for lejos project, "the Useless machine"
-*By developers Elias, Kristoffer, Ole Kristian and Håkon
-*/
+/*************************************************************
+	Main class for lejos project, "the Useless machine"
+	By developers Elias, Kristoffer, Ole Kristian and Haakon
+**************************************************************/
+
 import lejos.hardware.sensor.NXTColorSensor;
 import lejos.hardware.Brick;
 import lejos.hardware.port.Port;
@@ -13,7 +14,7 @@ import lejos.robotics.SampleProvider;
 import lejos.hardware.sensor.*;
 
 public class Main{
-	public static void main(String[]arg)throws Exception{
+	public static void main(String[] args ) throws Exception {
 
 		Brick brick = BrickFinder.getDefault();
 		Port s1 = brick.getPort("S1"); // soundsensor

@@ -1,8 +1,8 @@
-/*
-*class Commands for lejos project, "the Useless machine"
-*This class operates with all of the robot's physical movements
-*By developers Elias, Kristoffer, Ole Kristian and Håkon
-*/
+/*************************************************************
+	Class Commands for lejos project, "the Useless machine"
+	This class operates with all of the robot's physical movements
+	By developers Elias, Kristoffer, Ole Kristian and Haakon
+**************************************************************/
 import java.io.*;
 
 import lejos.hardware.motor.*; // Importing all motor classes
@@ -22,7 +22,7 @@ public class Commands{
 			// Motor.C
 
 			Motor.C.setSpeed(speed);
-			Motor.C.forward(); // Drive one direction
+			Motor.C.driveTo(); // Drive one direction
 			sleep(1000);
 			Motor.C.backward(); // Drive other direction
 			sleep(1000);

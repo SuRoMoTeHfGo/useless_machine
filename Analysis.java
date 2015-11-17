@@ -1,19 +1,5 @@
-/*
-*class Analysis for lejos project, "the Useless machine"
-*This class analyzes data from the sensors, and is mainly using random integers to decide different outcomes
-*By developers Elias, Kristoffer, Ole Kristian and Håkon
-*/
 
-import java.util.Random;
-import lejos.hardware.sensor.NXTColorSensor;
-import lejos.hardware.Brick;
-import lejos.hardware.port.Port;
-import lejos.hardware.BrickFinder;
-import lejos.hardware.ev3.EV3;
-import lejos.hardware.Keys;
-import lejos.hardware.sensor.SensorModes;
-import lejos.robotics.SampleProvider;
-import lejos.hardware.sensor.*;
+
 
 public class Analysis{
 	private PressureReader leverStatus;
@@ -42,7 +28,6 @@ public class Analysis{
 	*/
 	private void analyzePressure()throws Exception{
 		if(leverStatus.toggled()){
-			counter++;
 //switch case is designed to generate a number of seemingly random outcomes
 			switch (getRandomVal(1,30)){
 				case 1 : executor.moveArm(-30,40);
@@ -73,15 +58,17 @@ public class Analysis{
 	*The first 5 lever hits are supposed to go as normal, therefore a counter is placed in the method AnalyzePressure()
 	*/
 	private void analyzeSpace()throws Exception{
-		if(counter<5){
-		if(eyes.registered() && getRandomVal(0,10)>1){
-			executor.moveLever(0,0);
+		if(eyes.registered() && getRandomVal(0,10)<1){
+			if (getRandomVal(0,2) > 0.5) {
+				executor.moveLever(0,0);
+			} else {
+				executor.drive(300);
+			}
 
-		}else executor.moveLever(70,0);
+		} else {
+			executor.moveLever(70,0);
+		}
 
-		}//if
-
-		else if(eyes.registered() && getRandomVal(0,40)>35) executor.drive(300);
 	}
 
 	/*The method analyzeSounds is supposed to be the robot's ears
