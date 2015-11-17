@@ -31,7 +31,7 @@ public class UltrasonicReader {
 	}
 	
 	//this method provides the status of the airspace directly above the useless machine
-	public boolean registered(){
+	public boolean registered() {
 		ultrasonicReader.fetchSample(ultrasonicSample, 0); // Save values to first position of the EV3-uttrasonicsensor float table
 		return ultrasonicSample[0] < 0.13;
 	}

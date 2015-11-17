@@ -16,36 +16,38 @@ import lejos.robotics.pathfinding.Path;
 import lejos.hardware.Sounds.*;
 import lejos.hardware.Audio.*;
 import lejos.remote.ev3.*;
-;import lejos.hardware.Sound;
+import lejos.hardware.Sound;
 
 //Java classes
 import java.io.File;
-public class Audioplayer{
-// Object variables
+
+public class AudioPlayer {
 	private int masterVolume;
 	File file;
-// Constructor
-	public Audioplayer(int masterVolume){
+	
+	// Constructor
+	public AudioPlayer(int masterVolume) {
 		this.masterVolume = masterVolume;
 		file = new File("MegaMan.wav");
 	}
-	public int generateSound(File sound)throws Exception{
-		return Sound.playSample(sound,50);
+	public int generateSound(File sound) throws Exception {
+		return Sound.playSample(sound, 50);
 	}
-	public void setVolume()throws Exception{
-		Sound.setVolume(100);
+	public void setVolume() throws Exception {
+		Sound.setVolume(masterVolume);
 	}
-	private void getSound()throws Exception{
-		Runnable task = new Runnable() {//en tråd som spiller av sangen/musikken. vi kan legge til spillelister senere..
-		public void run() {
-			try{
-				int wavfilelength = generateSound(file);
+	
+	private void getSound() throws Exception {
+		Runnable task = new Runnable() {
+			public void run() {
+				try{
+					int wavfilelength = generateSound(file);
 				} catch (Exception e){
-
-					}
+					System.out.println(e);
 				}
-			};
-			new Thread(task).start();
+			}
+		};
+		new Thread(task).start();
 	}
 
 }
