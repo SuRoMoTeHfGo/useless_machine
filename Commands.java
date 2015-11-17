@@ -3,8 +3,8 @@
 	This class operates with all of the robot's physical movements
 	By developers Elias, Kristoffer, Ole Kristian and Haakon
 **************************************************************/
-import java.io.*;
 
+//Lejos classes
 import lejos.hardware.motor.*; // Importing all motor classes
 import lejos.hardware.lcd.*; // Importing all LCD screen classes
 import lejos.hardware.*; // Importing all hardware classes
@@ -13,6 +13,9 @@ import lejos.hardware.ev3.EV3; // Importing EV3 class
 import lejos.robotics.SampleProvider; // Importing SampleProvider class
 import lejos.hardware.sensor.*; // Importing all sensor classes
 import lejos.robotics.navigation.DifferentialPilot; // Importing DifferentialPilot class
+
+//Java classes
+import java.io.*;
 
 public class Commands{
 

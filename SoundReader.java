@@ -3,6 +3,8 @@
 	This class processes data from the sound sensor
 	By developers Elias, Kristoffer, Ole Kristian and Haakon
 **************************************************************/
+
+//Lejos classes
 import lejos.hardware.motor.*;
 import lejos.hardware.lcd.*;
 import lejos.hardware.sensor.NXTSoundSensor;
@@ -37,7 +39,7 @@ public class SoundReader{
 
 	//reads sample, returns true or false;
 	public boolean triggered(){
-		
+
 		soundReader.fetchSample(soundSample, 0);
 
 		return soundSample[0] > 0.5;

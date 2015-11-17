@@ -3,6 +3,8 @@
 	This class processes of data from the color sensor
 	By developers Elias, Kristoffer, Ole Kristian and Haakon
 **************************************************************/
+
+//Lejos classes
 import lejos.hardware.sensor.NXTColorSensor;
 import lejos.hardware.Brick;
 import lejos.hardware.port.Port;

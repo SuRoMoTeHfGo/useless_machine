@@ -3,6 +3,8 @@
 	This class processes data from the ultrasonic sensor
 	By developers Elias, Kristoffer, Ole Kristian and Haakon
 **************************************************************/
+
+//Lejos classes
 import lejos.hardware.sensor.NXTColorSensor;
 import lejos.hardware.Brick;
 import lejos.hardware.port.Port;
@@ -12,6 +14,7 @@ import lejos.hardware.Keys;
 import lejos.hardware.sensor.SensorModes;
 import lejos.robotics.SampleProvider;
 import lejos.hardware.sensor.*;
+
 public class UltrasonicReader{
 
 	private EV3UltrasonicSensor ultrasonicSensor;
@@ -28,7 +31,7 @@ public class UltrasonicReader{
 	}
 	//this method provides the status of the airspace directly above the useless machine
 	public boolean registered(){
-		
+
 		ultrasonicReader.fetchSample(ultrasonicSample, 0); // Save values to first position of the EV3-uttrasonicsensor float table
 
 

@@ -3,6 +3,7 @@
 	By developers Elias, Kristoffer, Ole Kristian and Haakon
 **************************************************************/
 
+//Lejos classes
 import lejos.hardware.sensor.NXTColorSensor;
 import lejos.hardware.Brick;
 import lejos.hardware.port.Port;
@@ -14,7 +15,7 @@ import lejos.robotics.SampleProvider;
 import lejos.hardware.sensor.*;
 
 public class Main{
-	
+
 	public static void main(String[] args ) throws Exception {
 
 		Brick brick = BrickFinder.getDefault();

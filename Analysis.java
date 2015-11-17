@@ -1,10 +1,24 @@
 
+
 /*************************************************************
 	Class Analysis for lejos project, "the Useless machine"
 	This class analyzes data from all the sensors
 	By developers Elias, Kristoffer, Ole Kristian and Haakon
 **************************************************************/
 
+//Lejos classes
+import lejos.hardware.sensor.NXTColorSensor;
+import lejos.hardware.Brick;
+import lejos.hardware.port.Port;
+import lejos.hardware.BrickFinder;
+import lejos.hardware.ev3.EV3;
+import lejos.hardware.Keys;
+import lejos.hardware.sensor.SensorModes;
+import lejos.robotics.SampleProvider;
+import lejos.hardware.sensor.*;
+
+//Java classes
+import java.util.Random;
 public class Analysis{
 	private PressureReader leverStatus;
 	private UltrasonicReader eyes;
@@ -27,41 +41,42 @@ public class Analysis{
 		return randomVal.nextInt(max-min+1)+min;
 	}
 
-	/*The method below processes the fact that the lever has been hit
+	/*
+	*The method below processes the fact that the lever has been hit
 	*It's intended to make the robot seem like it takes rushed decitions
 	*/
 	private void analyzePressure()throws Exception{
 		if(leverStatus.toggled()){
 			//switch case is designed to generate a number of seemingly random outcomes
 			switch (getRandomVal(1,30)){
-			case 1 : 
+			case 1 :
 				executor.moveArm(-30,40);
 				break;
 
-			case 2 : 
+			case 2 :
 				executor.moveArm(-30,40);//illustrates that the robot takes a "peek"
 				executor.sleep(600);//the robot waits for a brief moment
 				executor.moveArm(-100,200);//the robot hits the lever eventually
 				break;
 
-			case 3 : 
+			case 3 :
 				executor.moveArm(-100,200);//this must happen while the lever is down
 				executor.moveLever(70,0);//
 				executor.moveArm(-100,100);//this is supposed to happen after the lever is back up, after a timed delay
 				break;
 
-			case 4 : 
+			case 4 :
 				executor.moveLever(70,200);//the intended outcome is to hide the lever, drive away, and pick up the lever after a timed delay
 				executor.drive(100);//
 				break;
 			case 5 ://something with the AudioPlayer should be placed here
 				break;
-			case 6 : 
+			case 6 :
 				executor.sleep(2000);//the robot is supposed to wait for a few seconds before it hits the lever
 				executor.moveArm(-100,200);
 				break;
 
-				default : 
+				default :
 				executor.moveArm(-100,200); //the standard quick hit
 				break;
 			}//switch
