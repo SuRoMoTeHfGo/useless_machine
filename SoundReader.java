@@ -32,7 +32,7 @@ public class SoundReader {
 		soundSensor = new NXTSoundSensor(port);
 		soundReader = soundSensor.getDBAMode();
 	}
-	
+
 	public int getValue() {
 		return value;
 	} // getVaule

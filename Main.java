@@ -26,9 +26,11 @@ public class Main {
 		// SoundReader sounds = new SoundReader(s1);
 		UltrasonicReader eyes = new UltrasonicReader(s3);
 		PressureReader leverStatus = new PressureReader(s4);
-		AudioPlayer iPod = new AudioPlayer();
+		AudioPlayer iPod = new AudioPlayer(100);
 		Commands executor = new Commands();
 		Analysis brain = new Analysis(leverStatus, eyes, iPod, executor); //(leverStatus, eyes, sounds, iPod, executor);
+		
+		iPod.getSound();
 
 		iPod.startSound();
 		

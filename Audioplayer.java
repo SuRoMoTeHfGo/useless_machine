@@ -8,38 +8,45 @@
 import lejos.hardware.Brick;
 import lejos.hardware.port.Port;
 import lejos.hardware.BrickFinder;
-import lejos.hardware.ev3.EV3;
+import lejos.hardware.ev3.*;
 import lejos.hardware.Keys;
 import lejos.hardware.sensor.SensorModes;
 import lejos.robotics.SampleProvider;
 import lejos.hardware.sensor.*;
+import lejos.robotics.pathfinding.Path;
+import lejos.hardware.Sounds.*;
+import lejos.hardware.Audio.*;
+import lejos.remote.ev3.*;
 import lejos.hardware.Sound;
 
 //Java classes
 import java.io.File;
 
-public class AudioPlayer{
+public class AudioPlayer {
+	private int masterVolume;
+	File file;
 	
-	public AudioPlayer() {
-		Sound.setVolume(100);
+	// Constructor
+	public AudioPlayer(int masterVolume) {
+		this.masterVolume = masterVolume;
+		Sound.setVolume(masterVolume);
 	}
-	
-	public static int createSound(File file) throws Exception {
+	public static int generateSound(File file) throws Exception {
 		return Sound.playSample(file, 50);
 	}
-
-	public void startSound() {
+	
+	public void getSound() {
 		Runnable task = new Runnable() {
 			public void run() {
 				try {
-					File file = new File("music.wav");
-					int wavfilelength = createSound(file);
-				} catch (Exception ex) {
-					System.out.println(ex);
+					file = new File("music.wav");
+					int wavfilelength = generateSound(file);
+				} catch (Exception e){
+					System.out.println(e);
 				}
 			}
 		};
 		new Thread(task).start();
 	}
-}
 
+}

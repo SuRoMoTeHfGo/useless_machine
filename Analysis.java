@@ -47,10 +47,11 @@ public class Analysis {
 	private void analyzePressure() throws Exception {
 		if(leverStatus.toggled()) {
 			//switch case is designed to generate a number of seemingly random outcomes
-			switch (getRandomVal(1, 20)) {
-				case 1:
-					executor.moveArm(-30, 40);
-					break;
+
+			switch (getRandomVal(1, 30)) {
+				case 1 :
+				// executor.moveArm(-30, 40);
+				break;
 
 				case 2:
 					executor.moveArm(-30, 40);//illustrates that the robot takes a "peek"
@@ -93,7 +94,7 @@ public class Analysis {
 	*/
 	private void analyzeSpace() throws Exception {
 
-		if(eyes.registered() && getRandomVal(0, 4000) < 2){
+		if(eyes.registered() && getRandomVal(0, 3000) < 2){
 			if (getRandomVal(0, 2) > 0.5) {
 				executor.moveLever(0, 0);
 			} else {
