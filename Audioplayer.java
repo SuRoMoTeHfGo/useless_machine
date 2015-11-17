@@ -25,6 +25,7 @@ import java.io.File;
 public class AudioPlayer {
 	private int masterVolume;
 	File file;
+	String filename;
 	
 	// Constructor
 	public AudioPlayer(int masterVolume) {
@@ -38,8 +39,9 @@ public class AudioPlayer {
 	public void getSound() {
 		Runnable task = new Runnable() {
 			public void run() {
+				
 				try {
-					file = new File("music.wav");
+					file = new File(filename);
 					int wavfilelength = generateSound(file);
 				} catch (Exception e){
 					System.out.println(e);
@@ -47,6 +49,10 @@ public class AudioPlayer {
 			}
 		};
 		new Thread(task).start();
+	}
+	
+	public void setFilename(String name) {
+		filename = name;
 	}
 
 }

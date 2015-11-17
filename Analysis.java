@@ -44,46 +44,44 @@ public class Analysis {
 	*The method below processes the fact that the lever has been hit
 	*It's intended to make the robot seem like it takes rushed decitions
 	*/
+	int count = 1;
 	private void analyzePressure() throws Exception {
 		if(leverStatus.toggled()) {
 			//switch case is designed to generate a number of seemingly random outcomes
-
-			switch (getRandomVal(1, 30)) {
-				case 1 :
-				// executor.moveArm(-30, 40);
+			
+			switch (count) {
+			case 1 :
+				classicPush();
+				count++;
 				break;
 
-				case 2:
-					executor.moveArm(-30, 40);//illustrates that the robot takes a "peek"
-					executor.sleep(600);//the robot waits for a brief moment
-					executor.moveArm(-100, 200);//the robot hits the lever eventually
-					break;
+			case 2:
+				fastPush();
+				count++;
+				break;
 
-				case 3:
-					executor.moveArm(-100, 200);//this must happen while the lever is down
-					executor.moveLever(70, 0);//
-					executor.moveArm(-100, 100);//this is supposed to happen after the lever is back up, after a timed delay
-					break;
+			case 3:
+				slowPush();
+				count++;
+				break;
 
-				case 4:
-					executor.moveLever(70, 200);//the intended outcome is to hide the lever, drive away, and pick up the lever after a timed delay
-					executor.drive(100);//
-					break;
-					
-				case 5://something with the AudioPlayer should be placed here
-					break;
-					
-				case 6:
-					executor.sleep(2000);//the robot is supposed to wait for a few seconds before it hits the lever
-					executor.moveArm(-100, 200);
-					break;
+			case 4:
+				peekPush();
+				count++;
+				break;
 
-				default:
-					executor.moveArm(-100, 200); //the standard quick hit
-					break;
+			case 5:
+				dodge();
+				count++;
+				break;
+
+			default:
+				classicPush();
+				count = 1;
+				break;
 			}//switch
 		} else {
-			executor.moveArm(0, 200);
+			executor.moveArm(0, 200, false);
 		}
 	}//void
 
@@ -118,5 +116,31 @@ public class Analysis {
 		analyzeSpace();
 		analyzeSounds();
 	}//void
+	
+	/* 
+	* Different functions for the robot
+	*/
+	private void classicPush() throws Exception {
+		executor.moveArm(-100, 200, false);
+	}
+	
+	private void slowPush() throws Exception {
+		executor.moveArm(-100, 100, false);
+	}
+	
+	private void fastPush() throws Exception {
+		executor.moveArm(-100, 400, false);
+	}
+	
+	private void peekPush() throws Exception {
+		executor.moveArm(-30, 75, false);
+		executor.moveArm(0, 200, false);
+		executor.moveArm(-100, 250, false);
+	}
+	
+	private void dodge() throws Exception {
+		executor.moveArm(-100, 100, true);
+		executor.moveLever(0, 0);
+	}
 
 }//class
