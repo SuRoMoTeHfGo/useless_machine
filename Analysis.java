@@ -31,6 +31,7 @@ public class Analysis {
 		this.eyes = eyes;
 		this.iPod = iPod;
 		this.executor = executor;
+		iPod = new AudioPlayer(70);
 		// this.sounds = sounds;
 	}
 	
@@ -44,42 +45,47 @@ public class Analysis {
 	*The method below processes the fact that the lever has been hit
 	*It's intended to make the robot seem like it takes rushed decitions
 	*/
-	int count = 1;
+	
 	private void analyzePressure() throws Exception {
 		if(leverStatus.toggled()) {
 			//switch case is designed to generate a number of seemingly random outcomes
-			System.out.println(count);
-			switch (count) {
-				
-			case 1 :
-				classicPush();
-				count++;
-				break;
+			int value = getRandomVal(0, 8);
+			switch (value) {
+				case 1 :
+					classicPush();
+					break;
 
-			case 2:
-				fastPush();
-				count++;
-				break;
+				case 2:
+					fastPush();
+					break;
 
-			case 3:
-				slowPush();
-				count++;
-				break;
+				case 3:
+					slowPush();
+					break;
 
-			case 4:
-				peekPush();
-				count++;
-				break;
+				case 4:
+					peekPush();
+					break;
 
-			case 5:
-				dodge();
-				count++;
-				break;
+				case 5:
+					dodgePush();
+					break;
 
-			default:
-				classicPush();
-				count = 1;
-				break;
+				case 6:
+					delayPush();
+					break;
+					
+				case 7:
+					cenaPush();
+					break;
+					
+				case 8:
+					driveTest();
+					break;
+					
+				default:
+					classicPush();
+					break;
 			}//switch
 		}
 	}//void
@@ -91,14 +97,14 @@ public class Analysis {
 	*/
 	private void analyzeSpace() throws Exception {
 
-		if(eyes.registered() && getRandomVal(0, 3000) < 2){
+		if(eyes.registered() && getRandomVal(0, 300000) < 2){
 			if (getRandomVal(0, 2) > 0.5) {
-				executor.moveLever(0, 0);
+				executor.moveLever(0, 200);
 			} else {
-				executor.drive(300);
+				executor.drive(1200, -1200, 300);
 			}
 		} else {
-			executor.moveLever(70, 0);
+			executor.moveLever(70, 200);
 		}
 
 	}
@@ -113,7 +119,7 @@ public class Analysis {
 	public void chooseOutcome() throws Exception {
 		analyzePressure();
 		analyzeSpace();
-		analyzeSounds();
+		// analyzeSounds();
 	}//void
 	
 	/* 
@@ -121,25 +127,67 @@ public class Analysis {
 	*/
 	private void classicPush() throws Exception {
 		executor.moveArm(-100, 200, false);
+		executor.moveArm(0, 200, false);
 	}
 	
 	private void slowPush() throws Exception {
+		executor.moveArm(-70, 300, false);
 		executor.moveArm(-100, 100, false);
+		executor.moveArm(0, 100, false);
 	}
 	
 	private void fastPush() throws Exception {
-		executor.moveArm(-100, 400, false);
+		executor.moveArm(-100, 350, true);
+		executor.sleep(250);
+		executor.moveArm(0, 400, false);
 	}
 	
 	private void peekPush() throws Exception {
-		executor.moveArm(-30, 75, false);
-		executor.moveArm(0, 200, false);
-		executor.moveArm(-100, 250, false);
+		executor.moveArm(-30, 350, false);
+		executor.sleep(1750);
+		executor.moveArm(0, 350, false);
+		executor.sleep(750);
+		executor.moveArm(-100, 350, true);
+		executor.sleep(250);
+		executor.moveArm(0, 400, false);
 	}
 	
-	private void dodge() throws Exception {
-		executor.moveArm(-100, 100, true);
-		executor.moveLever(0, 0);
+	private void delayPush() throws Exception {
+		executor.sleep(1000);
+		executor.moveArm(-30, 350, false);
+		executor.sleep(1500);
+		executor.moveArm(-100, 40, false);
+		executor.moveArm(0, 350, false);
+	}
+	
+	private void dodge(long ms) throws Exception {
+		executor.sleep(ms);
+		executor.moveArm(-90, 350, true);
+		executor.moveLever(35, 300);
+		executor.moveArm(0, 200, false);
+		executor.moveLever(70, 25);
+	}
+	
+	private void dodgePush() throws Exception {
+		dodge(750);
+		peekPush();
+	}
+	
+	private void driveTest() throws Exception {
+		executor.drive(250, -250, 600);
+		classicPush();
+	}
+	
+	private void cenaPush() throws Exception {
+		iPod.setSound("cena.wav");
+		iPod.getSound();
+		executor.sleep(1550);
+		dodge(750);
+		dodge(500);
+		dodge(250);
+		dodge(100);
+		dodge(50);
+		classicPush();
 	}
 
 }//class

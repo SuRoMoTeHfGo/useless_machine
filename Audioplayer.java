@@ -51,7 +51,7 @@ public class AudioPlayer {
 		new Thread(task).start();
 	}
 	
-	public void setFilename(String name) {
+	public void setSound(String name) {
 		filename = name;
 	}
 

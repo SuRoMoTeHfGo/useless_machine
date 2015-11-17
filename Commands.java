@@ -20,14 +20,15 @@ import java.io.*;
 
 public class Commands {
 
-	public void drive(int speed) throws Exception {
+	public void drive(int rotateTo, int rotateNext, int speed) throws Exception {
 		/* This method drives the robot left and then right (back to the starting position) */
 
 		// Motor.C
 
 		Motor.C.setSpeed(speed);
-		Motor.C.rotateTo(1080, true); // Drive one direction
-		Motor.C.rotateTo(0, true); // Drive other direction
+		Motor.C.rotateTo(rotateTo, false); // Drive one direction
+		Motor.C.rotateTo(rotateNext, false); // Drive one direction
+		Motor.C.rotateTo(0, false); // Drive other direction
 	}
 
 	public void moveArm(int rotation, int motorspeed, boolean immediateReturn) throws Exception {
@@ -39,13 +40,12 @@ public class Commands {
 		Motor.B.rotateTo(rotation, immediateReturn); // Top: rotateTo(-90)
 	}
 
-	public void moveLever(int rotation, long ms) throws Exception {
+	public void moveLever(int rotation, int motorspeed) throws Exception {
 		/* This method moves the lever up and down again */
 		//It should be considered an option to switch the lever down, and leave it there for a timed delay...
 		//motor D
-		Motor.D.setSpeed(200); // Value for motorspeeed?
+		Motor.D.setSpeed(motorspeed); // Value for motorspeeed?
 		Motor.D.rotateTo(rotation); // Top: rotateTo(70)
-		sleep(ms);
 	}
 
 	public void sleep (long ms) throws Exception {
