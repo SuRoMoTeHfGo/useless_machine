@@ -30,8 +30,8 @@ public class Main {
 		AudioPlayer iPod = new AudioPlayer(100);
 		Analysis brain = new Analysis(leverStatus, eyes, iPod, executor); //(leverStatus, eyes, sounds, iPod, executor);
 		
-		// iPod.setFilename("music2.wav");
-		// iPod.getSound();
+		// Initialize
+		brain.init();
 		
 		/*We might consider a while loop with changing terms, as a way of ending the program sequence
 		*At this point the only desired functionality is for the program to loop infinitely

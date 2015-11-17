@@ -47,6 +47,7 @@ public class Analysis {
 	*/
 	
 	private void analyzePressure() throws Exception {
+		
 		if(leverStatus.toggled()) {
 			//switch case is designed to generate a number of seemingly random outcomes
 			int value = getRandomVal(0, 8);
@@ -115,10 +116,14 @@ public class Analysis {
 	private void analyzeSounds() {
 	}
 
+	public void init() throws Exception {
+		executor.moveLever(70, 200);
+	}
+	
 	//init method that calls the other methods
 	public void chooseOutcome() throws Exception {
 		analyzePressure();
-		analyzeSpace();
+		// analyzeSpace();
 		// analyzeSounds();
 	}//void
 	
@@ -174,7 +179,7 @@ public class Analysis {
 	}
 	
 	private void driveTest() throws Exception {
-		executor.drive(250, -250, 600);
+		executor.drive(250, -250, 500);
 		classicPush();
 	}
 	
