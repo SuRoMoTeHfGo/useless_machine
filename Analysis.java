@@ -22,12 +22,12 @@ public class Analysis {
 	private PressureReader leverStatus;
 	private UltrasonicReader eyes;
 	private SoundReader sounds;
-	private Audioplayer iPod;
+	private AudioPlayer iPod;
 	private Commands executor;
 	private Random randomVal;
 	private int counter;
 
-	public Analysis(PressureReader leverStatus, UltrasonicReader eyes, Audioplayer iPod, Commands executor) { //(PressureReader leverStatus, UltrasonicReader eyes, SoundReader sounds, Audioplayer iPod, Commands executor)
+	public Analysis(PressureReader leverStatus, UltrasonicReader eyes, AudioPlayer iPod, Commands executor) { //(PressureReader leverStatus, UltrasonicReader eyes, SoundReader sounds, Audioplayer iPod, Commands executor)
 		this.leverStatus = leverStatus;
 		this.eyes = eyes;
 		this.iPod = iPod;

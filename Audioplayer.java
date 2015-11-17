@@ -13,8 +13,33 @@ import lejos.hardware.Keys;
 import lejos.hardware.sensor.SensorModes;
 import lejos.robotics.SampleProvider;
 import lejos.hardware.sensor.*;
+import lejos.hardware.Sound;
 
-public class Audioplayer{
+//Java classes
+import java.io.File;
 
+public class AudioPlayer{
+	
+	public AudioPlayer() {
+		Sound.setVolume(100);
+	}
+	
+	public static int createSound(File file) throws Exception {
+		return Sound.playSample(file, 50);
+	}
+
+	public void startSound() {
+		Runnable task = new Runnable() {
+			public void run() {
+				try {
+					File file = new File("music.wav");
+					int wavfilelength = createSound(file);
+				} catch (Exception ex) {
+					System.out.println(ex);
+				}
+			}
+		};
+		new Thread(task).start();
+	}
 }
 
