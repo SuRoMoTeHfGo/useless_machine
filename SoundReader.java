@@ -27,6 +27,9 @@ public class SoundReader{
 
 	public SoundReader(Port port){
 		this.port = port;
+		soundSample = new float[soundReader.sampleSize()];
+		soundSensor = new NXTSoundSensor(port);
+		soundReader = soundSensor.getDBAMode();
 	}
 	public int getValue(){
 		return value;
@@ -34,9 +37,7 @@ public class SoundReader{
 
 	//reads sample, returns true or false;
 	public boolean triggered(){
-		soundSample = new float[soundReader.sampleSize()];
-		soundSensor = new NXTSoundSensor(port);
-		soundReader = soundSensor.getDBAMode();
+		
 		soundReader.fetchSample(soundSample, 0);
 
 		return soundSample[0] > 0.5;

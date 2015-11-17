@@ -1,5 +1,9 @@
 
-
+/*************************************************************
+	Class Analysis for lejos project, "the Useless machine"
+	This class analyzes data from all the sensors
+	By developers Elias, Kristoffer, Ole Kristian and Haakon
+**************************************************************/
 
 public class Analysis{
 	private PressureReader leverStatus;
@@ -10,10 +14,10 @@ public class Analysis{
 	private Random randomVal;
 	private int counter;
 
-	public Analysis(PressureReader leverStatus,UltrasonicReader eyes, SoundReader sounds,Audioplayer iPod,Commands executor){
+	public Analysis(PressureReader leverStatus,UltrasonicReader eyes,Audioplayer iPod,Commands executor){ //SoundReader sounds
 		this.leverStatus = leverStatus;
 		this.eyes = eyes;
-		this.sounds = sounds;
+		// this.sounds = sounds;
 		this.iPod = iPod;
 		this.executor = executor;
 	}
@@ -28,28 +32,40 @@ public class Analysis{
 	*/
 	private void analyzePressure()throws Exception{
 		if(leverStatus.toggled()){
-//switch case is designed to generate a number of seemingly random outcomes
+			//switch case is designed to generate a number of seemingly random outcomes
 			switch (getRandomVal(1,30)){
-				case 1 : executor.moveArm(-30,40);
+			case 1 : 
+				executor.moveArm(-30,40);
+				break;
 
-				case 2 : executor.moveArm(-30,40);//illustrates that the robot takes a "peek"
-						 executor.sleep(600);//the robot waits for a brief moment
-						 executor.moveArm(-90,200);//the robot hits the lever eventually
+			case 2 : 
+				executor.moveArm(-30,40);//illustrates that the robot takes a "peek"
+				executor.sleep(600);//the robot waits for a brief moment
+				executor.moveArm(-100,200);//the robot hits the lever eventually
+				break;
 
-				case 3 : executor.moveLever(70,0);//
-						 executor.moveArm(-90,200);//this must happen while the lever is down
-						 executor.moveArm(-90,100);//this is supposed to happen after the lever is back up, after a timed delay
+			case 3 : 
+				executor.moveArm(-100,200);//this must happen while the lever is down
+				executor.moveLever(70,0);//
+				executor.moveArm(-100,100);//this is supposed to happen after the lever is back up, after a timed delay
+				break;
 
-				case 4 : executor.moveLever(70,2000);//the intended outcome is to hide the lever, drive away, and pick up the lever after a timed delay
-						 executor.drive(100);//
-				case 5 ://something with the AudioPlayer should be placed here
+			case 4 : 
+				executor.moveLever(70,200);//the intended outcome is to hide the lever, drive away, and pick up the lever after a timed delay
+				executor.drive(100);//
+				break;
+			case 5 ://something with the AudioPlayer should be placed here
+				break;
+			case 6 : 
+				executor.sleep(2000);//the robot is supposed to wait for a few seconds before it hits the lever
+				executor.moveArm(-100,200);
+				break;
 
-				case 6 : executor.sleep(3000);//the robot is supposed to wait for a few seconds before it hits the lever
-						 executor.moveArm(-90,200);
-
-				default : executor.moveArm(-90,200); //the standard quick hit
+				default : 
+				executor.moveArm(-100,200); //the standard quick hit
+				break;
 			}//switch
-		}else executor.moveArm(0,0);
+		} else executor.moveArm(0,200);
 	}//void
 
 	/*The method analyseSpace uses data from the Ultrasonic sensor
@@ -58,13 +74,13 @@ public class Analysis{
 	*The first 5 lever hits are supposed to go as normal, therefore a counter is placed in the method AnalyzePressure()
 	*/
 	private void analyzeSpace()throws Exception{
-		if(eyes.registered() && getRandomVal(0,10)<1){
+
+		if(eyes.registered() && getRandomVal(0,10)<2){
 			if (getRandomVal(0,2) > 0.5) {
 				executor.moveLever(0,0);
 			} else {
 				executor.drive(300);
 			}
-
 		} else {
 			executor.moveLever(70,0);
 		}

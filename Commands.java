@@ -22,10 +22,8 @@ public class Commands{
 			// Motor.C
 
 			Motor.C.setSpeed(speed);
-			Motor.C.driveTo(); // Drive one direction
-			sleep(1000);
-			Motor.C.backward(); // Drive other direction
-			sleep(1000);
+			Motor.C.rotateTo(1080, true); // Drive one direction
+			Motor.C.rotateTo(0, true); // Drive other direction
 		}
 
 		public void moveArm(int rotation,int motorspeed)throws Exception{
