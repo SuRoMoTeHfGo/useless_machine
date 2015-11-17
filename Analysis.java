@@ -37,7 +37,7 @@ public class Analysis {
 	//generates a random value within decired interval, momentarily accecible by other classes
 	public int getRandomVal(int min, int max) {
 		randomVal = new Random();
-		return randomVal.nextInt(max - min + 1) + min;
+		return randomVal.nextInt(max - min) + min;
 	}
 
 	/*
@@ -48,8 +48,9 @@ public class Analysis {
 	private void analyzePressure() throws Exception {
 		if(leverStatus.toggled()) {
 			//switch case is designed to generate a number of seemingly random outcomes
-			
+			System.out.println(count);
 			switch (count) {
+				
 			case 1 :
 				classicPush();
 				count++;
@@ -80,8 +81,6 @@ public class Analysis {
 				count = 1;
 				break;
 			}//switch
-		} else {
-			executor.moveArm(0, 200, false);
 		}
 	}//void
 
