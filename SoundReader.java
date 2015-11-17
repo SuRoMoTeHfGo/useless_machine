@@ -17,9 +17,8 @@ import lejos.hardware.sensor.SensorModes;
 import lejos.robotics.SampleProvider;
 import lejos.hardware.sensor.*;
 
-public class SoundReader{
-
-
+public class SoundReader {
+	
 	private SampleProvider soundReader;
 	private	NXTSoundSensor soundSensor;
 	private float[] soundSample;
@@ -27,21 +26,20 @@ public class SoundReader{
 	private int value;
 	boolean volume = false;
 
-	public SoundReader(Port port){
+	public SoundReader(Port port) {
 		this.port = port;
 		soundSample = new float[soundReader.sampleSize()];
 		soundSensor = new NXTSoundSensor(port);
 		soundReader = soundSensor.getDBAMode();
 	}
-	public int getValue(){
+	
+	public int getValue() {
 		return value;
-	}//getVaule
+	} // getVaule
 
 	//reads sample, returns true or false;
-	public boolean triggered(){
-
+	public boolean triggered() {
 		soundReader.fetchSample(soundSample, 0);
-
 		return soundSample[0] > 0.5;
 	}
 

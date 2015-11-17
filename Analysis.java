@@ -25,7 +25,6 @@ public class Analysis {
 	private AudioPlayer iPod;
 	private Commands executor;
 	private Random randomVal;
-	private int counter;
 
 	public Analysis(PressureReader leverStatus, UltrasonicReader eyes, AudioPlayer iPod, Commands executor) { //(PressureReader leverStatus, UltrasonicReader eyes, SoundReader sounds, Audioplayer iPod, Commands executor)
 		this.leverStatus = leverStatus;
@@ -48,39 +47,39 @@ public class Analysis {
 	private void analyzePressure() throws Exception {
 		if(leverStatus.toggled()) {
 			//switch case is designed to generate a number of seemingly random outcomes
-			switch (getRandomVal(1, 30)) {
-			case 1 :
-				executor.moveArm(-30, 40);
-				break;
+			switch (getRandomVal(1, 20)) {
+				case 1:
+					executor.moveArm(-30, 40);
+					break;
 
-			case 2 :
-				executor.moveArm(-30, 40);//illustrates that the robot takes a "peek"
-				executor.sleep(600);//the robot waits for a brief moment
-				executor.moveArm(-100, 200);//the robot hits the lever eventually
-				break;
+				case 2:
+					executor.moveArm(-30, 40);//illustrates that the robot takes a "peek"
+					executor.sleep(600);//the robot waits for a brief moment
+					executor.moveArm(-100, 200);//the robot hits the lever eventually
+					break;
 
-			case 3 :
-				executor.moveArm(-100, 200);//this must happen while the lever is down
-				executor.moveLever(70, 0);//
-				executor.moveArm(-100, 100);//this is supposed to happen after the lever is back up, after a timed delay
-				break;
+				case 3:
+					executor.moveArm(-100, 200);//this must happen while the lever is down
+					executor.moveLever(70, 0);//
+					executor.moveArm(-100, 100);//this is supposed to happen after the lever is back up, after a timed delay
+					break;
 
-			case 4 :
-				executor.moveLever(70, 200);//the intended outcome is to hide the lever, drive away, and pick up the lever after a timed delay
-				executor.drive(100);//
-				break;
-				
-			case 5 ://something with the AudioPlayer should be placed here
-				break;
-				
-			case 6 :
-				executor.sleep(2000);//the robot is supposed to wait for a few seconds before it hits the lever
-				executor.moveArm(-100, 200);
-				break;
+				case 4:
+					executor.moveLever(70, 200);//the intended outcome is to hide the lever, drive away, and pick up the lever after a timed delay
+					executor.drive(100);//
+					break;
+					
+				case 5://something with the AudioPlayer should be placed here
+					break;
+					
+				case 6:
+					executor.sleep(2000);//the robot is supposed to wait for a few seconds before it hits the lever
+					executor.moveArm(-100, 200);
+					break;
 
-			default :
-				executor.moveArm(-100, 200); //the standard quick hit
-				break;
+				default:
+					executor.moveArm(-100, 200); //the standard quick hit
+					break;
 			}//switch
 		} else {
 			executor.moveArm(0, 200);
@@ -94,7 +93,7 @@ public class Analysis {
 	*/
 	private void analyzeSpace() throws Exception {
 
-		if(eyes.registered() && getRandomVal(0, 10) < 2){
+		if(eyes.registered() && getRandomVal(0, 4000) < 2){
 			if (getRandomVal(0, 2) > 0.5) {
 				executor.moveLever(0, 0);
 			} else {
