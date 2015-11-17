@@ -27,7 +27,7 @@ public class Analysis {
 	private Random randomVal;
 	private int counter;
 
-	public Analysis(PressureReader leverStatus, UltrasonicReader eyes, Audioplayer iPod, Commands executor){ //SoundReader sounds
+	public Analysis(PressureReader leverStatus, UltrasonicReader eyes, Audioplayer iPod, Commands executor) { //(PressureReader leverStatus, UltrasonicReader eyes, SoundReader sounds, Audioplayer iPod, Commands executor)
 		this.leverStatus = leverStatus;
 		this.eyes = eyes;
 		this.iPod = iPod;
