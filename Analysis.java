@@ -24,16 +24,16 @@ public class Analysis {
 	private SoundReader ears;
 	private AudioPlayer iPod;
 	private Commands executor;
+	private Outcomes pusher;
 	private Random randomVal;
 
-	public Analysis(PressureReader leverStatus, UltrasonicReader eyes, SoundReader ears, AudioPlayer iPod, Commands executor) {
+	public Analysis(PressureReader leverStatus, UltrasonicReader eyes, SoundReader ears, AudioPlayer iPod, Commands executor, Outcomes pusher) {
 		this.leverStatus = leverStatus;
 		this.eyes = eyes;
 		this.ears = ears;
 		this.iPod = iPod;
 		this.executor = executor;
-		iPod = new AudioPlayer(70);
-
+		this.pusher = pusher;
 	}
 	
 	//generates a random value within decired interval, momentarily accecible by other classes
@@ -51,42 +51,42 @@ public class Analysis {
 		
 		if(leverStatus.toggled()) {
 			//switch case is designed to generate a number of seemingly random outcomes
-			int value = getRandomVal(0, 8);
-			switch (7) {
+			int value = getRandomVal(0, 24);
+			switch (value) {
 				case 1 :
-					classicPush();
+					pusher.fastDodgePush();
 					break;
 
 				case 2:
-					fastPush();
+					pusher.fastPush();
 					break;
 
 				case 3:
-					slowPush();
+					pusher.slowPush();
 					break;
 
 				case 4:
-					peekPush();
+					pusher.peekPush();
 					break;
 
 				case 5:
-					dodgePush();
+					pusher.dodgePush();
 					break;
 
 				case 6:
-					delayPush();
+					pusher.delayPush();
 					break;
 					
 				case 7:
-					cenaPush();
+					pusher.cenaPush();
 					break;
 					
 				case 8:
-					driveTest();
+					pusher.longDelayPush();
 					break;
 					
 				default:
-					classicPush();
+					pusher.classicPush();
 					break;
 			}//switch
 		}
@@ -118,7 +118,7 @@ public class Analysis {
 		while (true) {
 			System.out.println(ears.getValue());
 			if (ears.triggered()) {
-				classicPush();
+				pusher.classicPush();
 				System.out.println("Limit hit");
 			}
 		}
@@ -130,77 +130,9 @@ public class Analysis {
 	
 	//init method that calls the other methods
 	public void chooseOutcome() throws Exception {
-		// analyzePressure();
+		analyzePressure();
 		// analyzeSpace();
-		analyzeSounds();
+		// analyzeSounds();
 	}//void
-	
-	/* 
-	* Different functions for the robot
-	*/
-	private void classicPush() throws Exception {
-		executor.moveArm(-100, 200, false);
-		executor.moveArm(0, 200, false);
-	}
-	
-	private void slowPush() throws Exception {
-		executor.moveArm(-70, 300, false);
-		executor.moveArm(-100, 100, false);
-		executor.moveArm(0, 100, false);
-	}
-	
-	private void fastPush() throws Exception {
-		executor.moveArm(-100, 350, true);
-		executor.sleep(250);
-		executor.moveArm(0, 400, false);
-	}
-	
-	private void peekPush() throws Exception {
-		executor.moveArm(-30, 350, false);
-		executor.sleep(1750);
-		executor.moveArm(0, 350, false);
-		executor.sleep(750);
-		executor.moveArm(-100, 350, true);
-		executor.sleep(250);
-		executor.moveArm(0, 400, false);
-	}
-	
-	private void delayPush() throws Exception {
-		executor.sleep(1000);
-		executor.moveArm(-30, 350, false);
-		executor.sleep(1500);
-		executor.moveArm(-100, 40, false);
-		executor.moveArm(0, 350, false);
-	}
-	
-	private void dodge(long ms) throws Exception {
-		executor.sleep(ms);
-		executor.moveArm(-90, 350, true);
-		executor.moveLever(35, 300);
-		executor.moveArm(0, 200, false);
-		executor.moveLever(70, 25);
-	}
-	
-	private void dodgePush() throws Exception {
-		dodge(750);
-		peekPush();
-	}
-	
-	private void driveTest() throws Exception {
-		executor.drive(250, -250, 500);
-		classicPush();
-	}
-	
-	private void cenaPush() throws Exception {
-		iPod.setSound("cena.wav");
-		iPod.getSound();
-		executor.sleep(1550);
-		dodge(750);
-		dodge(500);
-		dodge(250);
-		dodge(100);
-		dodge(50);
-		classicPush();
-	}
 
 }//class
