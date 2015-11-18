@@ -39,20 +39,23 @@ public class Outcomes {
 		executor.moveArm(0, 100, false);
 	}
 	public void fastPush() throws Exception {
+		iPod.setSound("wah.wav");
 		executor.moveArm(-100, 350, true);
-		executor.sleep(250);
+		executor.sleep(125);
+		iPod.getSound();
+		executor.sleep(125);
 		executor.moveArm(0, 400, false);
 	}
 
 	//The robot peeks first, then retires. After a delay, it hits the lever
 	public void peekPush() throws Exception {
+		iPod.setSound("jump.wav");
+		iPod.getSound();
 		executor.moveArm(-30, 350, false);
 		executor.sleep(1750);
 		executor.moveArm(0, 350, false);
 		executor.sleep(750);
-		executor.moveArm(-100, 350, true);
-		executor.sleep(250);
-		executor.moveArm(0, 400, false);
+		fastPush();
 	}
 
 	//In method delayPush lever is pushed after a delay
@@ -60,7 +63,11 @@ public class Outcomes {
 		executor.sleep(1000);
 		executor.moveArm(-30, 350, false);
 		executor.sleep(1500);
-		executor.moveArm(-100, 40, false);
+		iPod.setSound("coin.wav");
+		executor.moveArm(-100, 40, true);
+		executor.sleep(1500);
+		iPod.getSound();
+		executor.sleep(250);
 		executor.moveArm(0, 350, false);
 	}
 	//The lever is pushed after a longer delay, to make it seem like the user has won.
@@ -77,10 +84,11 @@ public class Outcomes {
 		dodge(750);
 		peekPush();
 	}
-	public void fastDodgePush() throws Exception{
+	public void fastDodgePush() throws Exception {
 		dodge(0);
 		fastPush();
 	}
+	
 
 	//In method cenaPush the robot goes into a "crazy mode", playing music while doing several attempts to hit the lever
 	public void cenaPush() throws Exception {
@@ -91,10 +99,11 @@ public class Outcomes {
 		executor.sleep(1550);//wait for 1,5 seconds
 		//dodge a few times so the bot can't hit the lever
 		dodge(750);
-		dodge(500);
-		dodge(250);
 		dodge(100);
 		dodge(50);
+		dodge(10);
+		dodge(0);
+		dodge(0);
 		//eventually it hits the lever
 		classicPush();
 	}
