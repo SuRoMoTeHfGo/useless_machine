@@ -85,7 +85,9 @@ public class Analysis {
 				case 8:
 					pusher.longDelayPush();
 					break;
-
+				case 9:
+					pusher.holdPush();
+					break;
 				default:
 					pusher.classicPush();
 					break;

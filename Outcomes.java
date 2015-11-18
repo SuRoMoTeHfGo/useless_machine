@@ -78,8 +78,16 @@ public class Outcomes{
 			peekPush();
 		}
 		public void fastDodgePush()throws Exception{
-			dodge(0);
+			dodge(150);
+			executor.sleep(400);
 			fastPush();
+		}
+
+		public void holdPush()throws Exception{
+			executor.sleep(100);
+			executor.moveArm(-100,250,false);
+			executor.sleep(1000);
+			executor.moveArm(0,40,false);
 		}
 
 	//In method cenaPush the robot goes into a "crazy mode", playing music while doing several attempts to hit the lever
