@@ -25,65 +25,69 @@ public class Analysis {
 	private AudioPlayer iPod;
 	private Commands executor;
 	private Random randomVal;
-	private int counter;
 
 	public Analysis(PressureReader leverStatus, UltrasonicReader eyes, AudioPlayer iPod, Commands executor) { //(PressureReader leverStatus, UltrasonicReader eyes, SoundReader sounds, Audioplayer iPod, Commands executor)
 		this.leverStatus = leverStatus;
 		this.eyes = eyes;
 		this.iPod = iPod;
 		this.executor = executor;
+		iPod = new AudioPlayer(70);
 		// this.sounds = sounds;
 	}
 	
 	//generates a random value within decired interval, momentarily accecible by other classes
 	public int getRandomVal(int min, int max) {
 		randomVal = new Random();
-		return randomVal.nextInt(max - min + 1) + min;
+		return randomVal.nextInt(max - min) + min;
 	}
 
 	/*
 	*The method below processes the fact that the lever has been hit
 	*It's intended to make the robot seem like it takes rushed decitions
 	*/
+	
 	private void analyzePressure() throws Exception {
+		
 		if(leverStatus.toggled()) {
 			//switch case is designed to generate a number of seemingly random outcomes
-			switch (getRandomVal(1, 30)) {
-			case 1 :
-				// executor.moveArm(-30, 40);
-				break;
+			int value = getRandomVal(0, 8);
+			switch (value) {
+				case 1 :
+					classicPush();
+					break;
 
-			case 2 :
-				executor.moveArm(-30, 40);//illustrates that the robot takes a "peek"
-				executor.sleep(600);//the robot waits for a brief moment
-				executor.moveArm(-100, 200);//the robot hits the lever eventually
-				break;
+				case 2:
+					fastPush();
+					break;
 
-			case 3 :
-				executor.moveArm(-100, 200);//this must happen while the lever is down
-				executor.moveLever(70, 0);//
-				executor.moveArm(-100, 100);//this is supposed to happen after the lever is back up, after a timed delay
-				break;
+				case 3:
+					slowPush();
+					break;
 
-			case 4 :
-				executor.moveLever(70, 200);//the intended outcome is to hide the lever, drive away, and pick up the lever after a timed delay
-				executor.drive(100);//
-				break;
-				
-			case 5 ://something with the AudioPlayer should be placed here
-				break;
-				
-			case 6 :
-				executor.sleep(2000);//the robot is supposed to wait for a few seconds before it hits the lever
-				executor.moveArm(-100, 200);
-				break;
+				case 4:
+					peekPush();
+					break;
 
-			default :
-				executor.moveArm(-100, 200); //the standard quick hit
-				break;
+				case 5:
+					dodgePush();
+					break;
+
+				case 6:
+					delayPush();
+					break;
+					
+				case 7:
+					cenaPush();
+					break;
+					
+				case 8:
+					driveTest();
+					break;
+					
+				default:
+					classicPush();
+					break;
 			}//switch
-		} else {
-			executor.moveArm(0, 200);
 		}
 	}//void
 
@@ -94,14 +98,14 @@ public class Analysis {
 	*/
 	private void analyzeSpace() throws Exception {
 
-		if(eyes.registered() && getRandomVal(0, 3000) < 2){
+		if(eyes.registered() && getRandomVal(0, 300000) < 2){
 			if (getRandomVal(0, 2) > 0.5) {
-				executor.moveLever(0, 0);
+				executor.moveLever(0, 200);
 			} else {
-				executor.drive(300);
+				executor.drive(1200, -1200, 300);
 			}
 		} else {
-			executor.moveLever(70, 0);
+			executor.moveLever(70, 200);
 		}
 
 	}
@@ -112,11 +116,83 @@ public class Analysis {
 	private void analyzeSounds() {
 	}
 
+	public void init() throws Exception {
+		executor.moveLever(70, 200);
+	}
+	
 	//init method that calls the other methods
 	public void chooseOutcome() throws Exception {
 		analyzePressure();
-		analyzeSpace();
-		analyzeSounds();
+		// analyzeSpace();
+		// analyzeSounds();
 	}//void
+	
+	/* 
+	* Different functions for the robot
+	*/
+	private void classicPush() throws Exception {
+		executor.moveArm(-100, 200, false);
+		executor.moveArm(0, 200, false);
+	}
+	
+	private void slowPush() throws Exception {
+		executor.moveArm(-70, 300, false);
+		executor.moveArm(-100, 100, false);
+		executor.moveArm(0, 100, false);
+	}
+	
+	private void fastPush() throws Exception {
+		executor.moveArm(-100, 350, true);
+		executor.sleep(250);
+		executor.moveArm(0, 400, false);
+	}
+	
+	private void peekPush() throws Exception {
+		executor.moveArm(-30, 350, false);
+		executor.sleep(1750);
+		executor.moveArm(0, 350, false);
+		executor.sleep(750);
+		executor.moveArm(-100, 350, true);
+		executor.sleep(250);
+		executor.moveArm(0, 400, false);
+	}
+	
+	private void delayPush() throws Exception {
+		executor.sleep(1000);
+		executor.moveArm(-30, 350, false);
+		executor.sleep(1500);
+		executor.moveArm(-100, 40, false);
+		executor.moveArm(0, 350, false);
+	}
+	
+	private void dodge(long ms) throws Exception {
+		executor.sleep(ms);
+		executor.moveArm(-90, 350, true);
+		executor.moveLever(35, 300);
+		executor.moveArm(0, 200, false);
+		executor.moveLever(70, 25);
+	}
+	
+	private void dodgePush() throws Exception {
+		dodge(750);
+		peekPush();
+	}
+	
+	private void driveTest() throws Exception {
+		executor.drive(250, -250, 500);
+		classicPush();
+	}
+	
+	private void cenaPush() throws Exception {
+		iPod.setSound("cena.wav");
+		iPod.getSound();
+		executor.sleep(1550);
+		dodge(750);
+		dodge(500);
+		dodge(250);
+		dodge(100);
+		dodge(50);
+		classicPush();
+	}
 
 }//class

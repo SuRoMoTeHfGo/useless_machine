@@ -1,6 +1,6 @@
 /*************************************************************
 	Class ColorReader for lejos project, "the Useless machine"
-	This class processes of data from the color sensor
+	This class processes of data from the touch sensor
 	By developers Elias, Kristoffer, Ole Kristian and Haakon
 **************************************************************/
 

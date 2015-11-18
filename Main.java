@@ -24,14 +24,15 @@ public class Main {
 		Port s4 = brick.getPort("S4"); // touchsensor
 
 		// SoundReader sounds = new SoundReader(s1);
-		PressureReader leverStatus = new PressureReader(s4);
 		UltrasonicReader eyes = new UltrasonicReader(s3);
-		AudioPlayer iPod = new AudioPlayer(100);
+		PressureReader leverStatus = new PressureReader(s4);
 		Commands executor = new Commands();
+		AudioPlayer iPod = new AudioPlayer(100);
 		Analysis brain = new Analysis(leverStatus, eyes, iPod, executor); //(leverStatus, eyes, sounds, iPod, executor);
 		
-		iPod.getSound();
-
+		// Initialize
+		brain.init();
+		
 		/*We might consider a while loop with changing terms, as a way of ending the program sequence
 		*At this point the only desired functionality is for the program to loop infinitely
 		*/
