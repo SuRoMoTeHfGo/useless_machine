@@ -48,13 +48,14 @@ public class Outcomes{
 
 		//The robot peeks first, then retires. After a delay, it hits the lever
 		public void peekPush() throws Exception {
+			//Peek, then retire
 			executor.moveArm(-30, 350, false);
 			executor.sleep(1750);
 			executor.moveArm(0, 350, false);
 			executor.sleep(750);
-			executor.moveArm(-100, 350, true);
-			executor.sleep(250);
-			executor.moveArm(0, 400, false);
+
+			//Hit the lever fast
+			fastPush();
 		}
 
 		//In method delayPush lever is pushed after a delay
@@ -105,6 +106,7 @@ public class Outcomes{
 			dodge(250);
 			dodge(100);
 			dodge(50);
+
 			//eventually it hits the lever
 			classicPush();
 		}
