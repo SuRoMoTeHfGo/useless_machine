@@ -20,8 +20,8 @@ import java.io.*;
 
 public class Commands {
 
+	// This method drives the robot left and then right (back to the starting position)
 	public void drive(int rotateTo, int rotateNext, int speed) throws Exception {
-		/* This method drives the robot left and then right (back to the starting position) */
 
 		// Motor.C
 
@@ -37,19 +37,19 @@ public class Commands {
 		// Motor.B
 
 		Motor.B.setSpeed(motorspeed);
-		Motor.B.rotateTo(rotation, immediateReturn); // Top: rotateTo(-90)
+		Motor.B.rotateTo(rotation, immediateReturn); // Top: rotateTo(-100)
 	}
 
 	public void moveLever(int rotation, int motorspeed) throws Exception {
-		/* This method moves the lever up and down again */
-		//It should be considered an option to switch the lever down, and leave it there for a timed delay...
+		// This method moves the lever up and down again
+
 		//motor D
-		Motor.D.setSpeed(motorspeed); // Value for motorspeeed?
+		Motor.D.setSpeed(motorspeed);
 		Motor.D.rotateTo(rotation); // Top: rotateTo(70)
 	}
 
+	//The method sleep is designed to give the robot a timed delay before it hits the lever.
 	public void sleep (long ms) throws Exception {
-		//the method sleep is to give the robot a timed delay befor it hits the lever.
 		Delay.msDelay(ms);
 	}
 

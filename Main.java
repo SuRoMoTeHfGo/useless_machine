@@ -36,7 +36,7 @@ public class Main {
 		brain.init();
 
 		/*
-		*We might consider a while loop with changing terms, as a way of ending the program sequence
+		*We might consider a while loop with changable terms, as a way of ending the program sequence
 		*At this point the only desired functionality is for the program to loop infinitely
 		*/
 

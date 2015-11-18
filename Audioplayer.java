@@ -32,10 +32,12 @@ public class AudioPlayer {
 		this.masterVolume = masterVolume;
 		Sound.setVolume(masterVolume);
 	}
+	//Generates sound value
 	public static int generateSound(File file) throws Exception {
 		return Sound.playSample(file, 50);
 	}
 
+	//Runs sound sample, checking for errors
 	public void getSound() {
 		Runnable task = new Runnable() {
 			public void run() {
