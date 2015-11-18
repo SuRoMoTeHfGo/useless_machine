@@ -20,8 +20,10 @@ public class Outcomes{
 	private Commands executor;
 	private AudioPlayer iPod;
 
+	//Constructor
 	public Outcomes(Commands executor, AudioPlayer iPod){
 		this.executor = executor;
+		this.iPod = iPod;
 	}
 
 

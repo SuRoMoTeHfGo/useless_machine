@@ -16,14 +16,14 @@ import lejos.robotics.SampleProvider;
 import lejos.hardware.sensor.*;
 
 public class PressureReader {
-	
+
 	private float[] touchSample;
 	private EV3TouchSensor touchSensor;
 	private SampleProvider touchReader;
 	private Port port;
 	private double value = 0.01;
 	boolean black = false;
-	
+
 	//constructor
 	public PressureReader(Port port) {
 		this.port = port;
@@ -38,8 +38,4 @@ public class PressureReader {
 		return touchSample[0] > 0;
 	}
 
-	//returns sample for debugging, and is not considered a functional method
-	public double getSample() throws Exception {
-		return value;
-	}
 }//class
