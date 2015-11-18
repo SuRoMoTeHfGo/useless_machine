@@ -22,13 +22,13 @@ import lejos.hardware.Sound;
 //Java classes
 import java.io.File;
 
-public class Audioplayer {
+public class AudioPlayer {
 	private int masterVolume;
 	File file;
 	String filename;
 
 	// Constructor
-	public Audioplayer(int masterVolume) {
+	public AudioPlayer(int masterVolume) {
 		this.masterVolume = masterVolume;
 		Sound.setVolume(masterVolume);
 	}
@@ -50,7 +50,7 @@ public class Audioplayer {
 		};
 		new Thread(task).start();
 	}
-	
+
 	public void setSound(String name) {
 		filename = name;
 	}

@@ -4,15 +4,15 @@
 **************************************************************/
 
 //Lejos classes
-import lejos.hardware.sensor.NXTColorSensor;
-import lejos.hardware.Brick;
-import lejos.hardware.port.Port;
-import lejos.hardware.BrickFinder;
-import lejos.hardware.ev3.EV3;
-import lejos.hardware.Keys;
-import lejos.hardware.sensor.SensorModes;
-import lejos.robotics.SampleProvider;
-import lejos.hardware.sensor.*;
+import lejos.hardware.sensor.NXTColorSensor; // Importing color sensos class
+import lejos.hardware.Brick;// Importing brick class
+import lejos.hardware.port.Port;// Importing Port class
+import lejos.hardware.BrickFinder; //Importing bringfinder class
+import lejos.hardware.ev3.EV3;// Importing EV3 class
+import lejos.hardware.Keys;// Importing keys class
+import lejos.hardware.sensor.SensorModes;// Importing sensormodes class
+import lejos.robotics.SampleProvider;// Importing SampleProvider class
+import lejos.hardware.sensor.*;// Importing all sensor classes
 
 public class Main {
 
@@ -28,11 +28,13 @@ public class Main {
 		PressureReader leverStatus = new PressureReader(s4);
 		Commands executor = new Commands();
 		AudioPlayer iPod = new AudioPlayer(100);
-		Analysis brain = new Analysis(leverStatus, eyes, iPod, executor); //(leverStatus, eyes, sounds, iPod, executor);
-		
-		// Initialize
+		Outcomes pusher = new Outcomes(executor, iPod);
+		Analysis brain = new Analysis(leverStatus, eyes, iPod, executor,pusher); //(leverStatus, eyes, sounds, iPod, executor);
+
+
+		// Initialize program
 		brain.init();
-		
+
 		/*We might consider a while loop with changing terms, as a way of ending the program sequence
 		*At this point the only desired functionality is for the program to loop infinitely
 		*/

@@ -1,6 +1,6 @@
 /*************************************************************
 	Class Commands for lejos project, "the Useless machine"
-	This class operates with all of the robot's physical movements
+	This class operates all of the robot's physical movements
 	By developers Elias, Kristoffer, Ole Kristian and Haakon
 **************************************************************/
 
