@@ -21,18 +21,19 @@ import java.util.Random;
 public class Analysis {
 	private PressureReader leverStatus;
 	private UltrasonicReader eyes;
-	private SoundReader sounds;
+	private SoundReader ears;
 	private AudioPlayer iPod;
 	private Commands executor;
 	private Random randomVal;
 
-	public Analysis(PressureReader leverStatus, UltrasonicReader eyes, AudioPlayer iPod, Commands executor) { //(PressureReader leverStatus, UltrasonicReader eyes, SoundReader sounds, Audioplayer iPod, Commands executor)
+	public Analysis(PressureReader leverStatus, UltrasonicReader eyes, SoundReader ears, AudioPlayer iPod, Commands executor) {
 		this.leverStatus = leverStatus;
 		this.eyes = eyes;
+		this.ears = ears;
 		this.iPod = iPod;
 		this.executor = executor;
 		iPod = new AudioPlayer(70);
-		// this.sounds = sounds;
+
 	}
 	
 	//generates a random value within decired interval, momentarily accecible by other classes
@@ -51,7 +52,7 @@ public class Analysis {
 		if(leverStatus.toggled()) {
 			//switch case is designed to generate a number of seemingly random outcomes
 			int value = getRandomVal(0, 8);
-			switch (value) {
+			switch (7) {
 				case 1 :
 					classicPush();
 					break;
@@ -113,7 +114,14 @@ public class Analysis {
 	/*The method analyzeSounds is supposed to be the robot's ears
 	*Desired reactions to certain sound levels could be playing a track from the class AudioPlayer
 	*/
-	private void analyzeSounds() {
+	private void analyzeSounds() throws Exception {
+		while (true) {
+			System.out.println(ears.getValue());
+			if (ears.triggered()) {
+				classicPush();
+				System.out.println("Limit hit");
+			}
+		}
 	}
 
 	public void init() throws Exception {
@@ -122,9 +130,9 @@ public class Analysis {
 	
 	//init method that calls the other methods
 	public void chooseOutcome() throws Exception {
-		analyzePressure();
+		// analyzePressure();
 		// analyzeSpace();
-		// analyzeSounds();
+		analyzeSounds();
 	}//void
 	
 	/* 

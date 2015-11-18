@@ -19,16 +19,16 @@ public class Main {
 	public static void main(String[] args) throws Exception {
 
 		Brick brick = BrickFinder.getDefault();
-		// Port s1 = brick.getPort("S1"); // soundsensor
+		Port s2 = brick.getPort("S2"); // soundsensor
 		Port s3 = brick.getPort("S3"); // ultrasonicsensor
 		Port s4 = brick.getPort("S4"); // touchsensor
 
-		// SoundReader sounds = new SoundReader(s1);
+		SoundReader ears = new SoundReader(s2);
 		UltrasonicReader eyes = new UltrasonicReader(s3);
 		PressureReader leverStatus = new PressureReader(s4);
 		Commands executor = new Commands();
 		AudioPlayer iPod = new AudioPlayer(100);
-		Analysis brain = new Analysis(leverStatus, eyes, iPod, executor); //(leverStatus, eyes, sounds, iPod, executor);
+		Analysis brain = new Analysis(leverStatus, eyes, ears, iPod, executor);
 		
 		// Initialize
 		brain.init();
