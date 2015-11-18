@@ -25,6 +25,7 @@ public class SoundReader {
 	private Port port;
 	private int value;
 	boolean volume = false;
+
 	//Constructor
 	public SoundReader(Port port) {
 		this.port = port;
@@ -39,8 +40,4 @@ public class SoundReader {
 		return soundSample[0] > 0.5;
 	}
 
-	//The method getValue is exclusively made for debugging, and is not considered a functional method
-	public int getValue() {
-			return value;
-	}
 }

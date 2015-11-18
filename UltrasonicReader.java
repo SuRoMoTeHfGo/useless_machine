@@ -29,8 +29,8 @@ public class UltrasonicReader {
 		ultrasonicReader = ultrasonicSensor.getDistanceMode(); // Register sample provider for EV3-uttrasonicsensor
 		ultrasonicSample = new float[ultrasonicReader.sampleSize()]; // Register float table for EV3-uttrasonicsensor sample values
 	}
-	
-	//this method provides the status of the airspace directly above the useless machine
+
+	//The method registered provides the status of the airspace directly above the useless machine
 	public boolean registered() {
 		ultrasonicReader.fetchSample(ultrasonicSample, 0); // Save values to first position of the EV3-uttrasonicsensor float table
 		return ultrasonicSample[0] < 0.13;

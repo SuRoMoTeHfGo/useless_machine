@@ -32,6 +32,7 @@ public class AudioPlayer {
 		this.masterVolume = masterVolume;
 		Sound.setVolume(masterVolume);
 	}
+
 	//Generates sound value
 	public static int generateSound(File file) throws Exception {
 		return Sound.playSample(file, 50);
@@ -50,8 +51,9 @@ public class AudioPlayer {
 				}
 			}
 		};
+
 		new Thread(task).start();
-	}
+	}//void
 
 	public void setSound(String name) {
 		filename = name;
