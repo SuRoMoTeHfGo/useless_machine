@@ -36,7 +36,7 @@ public class Audioplayer{
 		Sound.setVolume(100);
 	}
 	private void getSound()throws Exception{
-		Runnable task = new Runnable() {//en tråd som spiller av sangen/musikken. vi kan legge til spillelister senere..
+		Runnable task = new Runnable() {//thread playing music
 		public void run() {
 			try{
 				int wavfilelength = generateSound(file);
