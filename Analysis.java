@@ -22,12 +22,12 @@ public class Analysis {
 	private PressureReader leverStatus;
 	private UltrasonicReader eyes;
 	private SoundReader sounds;
-	private Audioplayer iPod;
+	private AudioPlayer iPod;
 	private Commands executor;
 	private Random randomVal;
 	private int counter;
 
-	public Analysis(PressureReader leverStatus, UltrasonicReader eyes, Audioplayer iPod, Commands executor) { //(PressureReader leverStatus, UltrasonicReader eyes, SoundReader sounds, Audioplayer iPod, Commands executor)
+	public Analysis(PressureReader leverStatus, UltrasonicReader eyes, AudioPlayer iPod, Commands executor) { //(PressureReader leverStatus, UltrasonicReader eyes, SoundReader sounds, Audioplayer iPod, Commands executor)
 		this.leverStatus = leverStatus;
 		this.eyes = eyes;
 		this.iPod = iPod;
@@ -50,7 +50,7 @@ public class Analysis {
 			//switch case is designed to generate a number of seemingly random outcomes
 			switch (getRandomVal(1, 30)) {
 			case 1 :
-				executor.moveArm(-30, 40);
+				// executor.moveArm(-30, 40);
 				break;
 
 			case 2 :
@@ -94,7 +94,7 @@ public class Analysis {
 	*/
 	private void analyzeSpace() throws Exception {
 
-		if(eyes.registered() && getRandomVal(0, 10) < 2){
+		if(eyes.registered() && getRandomVal(0, 3000) < 2){
 			if (getRandomVal(0, 2) > 0.5) {
 				executor.moveLever(0, 0);
 			} else {

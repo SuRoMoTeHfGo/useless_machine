@@ -12,41 +12,47 @@ import lejos.hardware.ev3.*;
 import lejos.hardware.Keys;
 import lejos.hardware.sensor.SensorModes;
 import lejos.robotics.SampleProvider;
+import lejos.hardware.sensor.*;
 import lejos.robotics.pathfinding.Path;
 import lejos.hardware.Sounds.*;
 import lejos.hardware.Audio.*;
 import lejos.remote.ev3.*;
-;import lejos.hardware.Sound;
+import lejos.hardware.Sound;
 
 //Java classes
 import java.io.File;
-public class Audioplayer{
-// Object variables
+
+public class Audioplayer {
 	private int masterVolume;
 	File file;
-// Constructor
-	public Audioplayer(int masterVolume){
-		this.masterVolume = masterVolume;
-		file = new File("MegaMan.wav");
-	}
-	public int generateSound(File sound)throws Exception{
-		return Sound.playSample(sound,50);
-	}
-	public void setVolume()throws Exception{
-		Sound.setVolume(100);
-	}
-	private void getSound()throws Exception{
-		Runnable task = new Runnable() {//thread playing music
-		public void run() {
-			try{
-				int wavfilelength = generateSound(file);
-				} catch (Exception e){
+	String filename;
 
-					}
+	// Constructor
+	public Audioplayer(int masterVolume) {
+		this.masterVolume = masterVolume;
+		Sound.setVolume(masterVolume);
+	}
+	public static int generateSound(File file) throws Exception {
+		return Sound.playSample(file, 50);
+	}
+
+	public void getSound() {
+		Runnable task = new Runnable() {
+			public void run() {
+
+				try {
+					file = new File(filename);
+					int wavfilelength = generateSound(file);
+				} catch (Exception e){
+					System.out.println(e);
 				}
-			};
-			new Thread(task).start();
+			}
+		};
+		new Thread(task).start();
+	}
+
+	public void setSound(String name) {
+		filename = name;
 	}
 
 }
-

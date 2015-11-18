@@ -26,9 +26,11 @@ public class Main {
 		// SoundReader sounds = new SoundReader(s1);
 		PressureReader leverStatus = new PressureReader(s4);
 		UltrasonicReader eyes = new UltrasonicReader(s3);
-		Audioplayer iPod = new Audioplayer();
+		AudioPlayer iPod = new AudioPlayer(100);
 		Commands executor = new Commands();
 		Analysis brain = new Analysis(leverStatus, eyes, iPod, executor); //(leverStatus, eyes, sounds, iPod, executor);
+		
+		iPod.getSound();
 
 		/*We might consider a while loop with changing terms, as a way of ending the program sequence
 		*At this point the only desired functionality is for the program to loop infinitely
