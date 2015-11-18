@@ -22,20 +22,20 @@ public class Analysis {
 
 	private PressureReader leverStatus;
 	private UltrasonicReader eyes;
-	private SoundReader sounds;
+	private SoundReader ears;
 	private AudioPlayer iPod;
 	private Commands executor;
 	private Outcomes pusher;
 	private Random randomVal;
+
 	//Constructor
-	public Analysis(PressureReader leverStatus, UltrasonicReader eyes, AudioPlayer iPod, Commands executor, Outcomes pusher) { //(PressureReader leverStatus, UltrasonicReader eyes, SoundReader sounds, Audioplayer iPod, Commands executor)
+	public Analysis(PressureReader leverStatus, UltrasonicReader eyes, SoundReader ears, AudioPlayer iPod, Commands executor, Outcomes pusher) {
 		this.leverStatus = leverStatus;
 		this.eyes = eyes;
+		this.ears = ears;
 		this.iPod = iPod;
 		this.executor = executor;
 		this.pusher = pusher;
-		iPod = new AudioPlayer(70);
-		// this.sounds = sounds;
 	}
 
 	//generates a random value within decired interval, momentarily accecible by other classes
@@ -57,6 +57,7 @@ public class Analysis {
 			*There are 10 different moves in total
 			*The "default" case contains the standart way to hit the lever
 			*/
+
 			int value = getRandomVal(0, 24);
 			switch (value) {
 				case 1 :
@@ -126,7 +127,14 @@ public class Analysis {
 	/*The method analyzeSounds is supposed to be the robot's ears
 	*Desired reactions to certain sound levels could be moving or reacting with a sound effect
 	*/
-	private void analyzeSounds() {
+	private void analyzeSounds() throws Exception {
+		while (true) {
+			System.out.println(ears.getValue());
+			if (ears.triggered()) {
+				pusher.classicPush();
+				System.out.println("Limit hit");
+			}
+		}
 	}
 
 	//The init method lifts the hidden lever, thus the game is started
