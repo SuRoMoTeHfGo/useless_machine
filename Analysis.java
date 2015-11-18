@@ -49,9 +49,13 @@ public class Analysis {
 	*/
 
 	private void analyzePressure() throws Exception {
-
+		//Checks wether the lever is on or off
 		if(leverStatus.toggled()) {
-			//switch case is designed to generate a number of seemingly random outcomes
+			/*Switch case below is designed to generate a number of seemingly random outcomes
+			*In 9 out of 25 cases, the bot does a special move
+			*There are 10 different moves in total
+			*The "default" case contains the standart way to hit the lever
+			*/
 			int value = getRandomVal(0, 24);
 			switch (value) {
 				case 1 :
@@ -85,9 +89,11 @@ public class Analysis {
 				case 8:
 					pusher.longDelayPush();
 					break;
+
 				case 9:
 					pusher.holdPush();
 					break;
+
 				default:
 					pusher.classicPush();
 					break;
@@ -102,7 +108,7 @@ public class Analysis {
 	*/
 	private void analyzeSpace() throws Exception {
 
-		if(eyes.registered() && getRandomVal(0, 16) < 2){
+		if(eyes.registered() && getRandomVal(0, 2000) < 2){
 
 			if (getRandomVal(0, 2) > 0.5) {
 				executor.moveLever(0, 200);
@@ -117,16 +123,17 @@ public class Analysis {
 	}
 
 	/*The method analyzeSounds is supposed to be the robot's ears
-	*Desired reactions to certain sound levels could be playing a track from the class AudioPlayer
+	*Desired reactions to certain sound levels could be moving or reacting with a sound effect
 	*/
 	private void analyzeSounds() {
 	}
 
+	//The init method lifts the hidden lever, thus the game is started
 	public void init() throws Exception {
 		executor.moveLever(70, 200);
 	}
 
-	//init method that calls the other methods
+	//Method chooseOutcome calls the other functional methods
 	public void chooseOutcome() throws Exception {
 		analyzePressure();
 		analyzeSpace();
