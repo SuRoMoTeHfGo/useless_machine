@@ -19,6 +19,7 @@ import lejos.hardware.sensor.*;
 import java.util.Random;
 
 public class Analysis {
+
 	private PressureReader leverStatus;
 	private UltrasonicReader eyes;
 	private SoundReader sounds;
@@ -26,7 +27,7 @@ public class Analysis {
 	private Commands executor;
 	private Outcomes pusher;
 	private Random randomVal;
-
+	//Constructor
 	public Analysis(PressureReader leverStatus, UltrasonicReader eyes, AudioPlayer iPod, Commands executor, Outcomes pusher) { //(PressureReader leverStatus, UltrasonicReader eyes, SoundReader sounds, Audioplayer iPod, Commands executor)
 		this.leverStatus = leverStatus;
 		this.eyes = eyes;

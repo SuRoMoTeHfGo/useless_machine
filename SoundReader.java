@@ -18,14 +18,14 @@ import lejos.robotics.SampleProvider;
 import lejos.hardware.sensor.*;
 
 public class SoundReader {
-	
+
 	private SampleProvider soundReader;
 	private	NXTSoundSensor soundSensor;
 	private float[] soundSample;
 	private Port port;
 	private int value;
 	boolean volume = false;
-
+	//Constructor
 	public SoundReader(Port port) {
 		this.port = port;
 		soundSample = new float[soundReader.sampleSize()];
@@ -33,14 +33,14 @@ public class SoundReader {
 		soundReader = soundSensor.getDBAMode();
 	}
 
-	public int getValue() {
-		return value;
-	} // getVaule
-
-	//reads sample, returns true or false;
+	//reads sound sample, returns true or false
 	public boolean triggered() {
 		soundReader.fetchSample(soundSample, 0);
 		return soundSample[0] > 0.5;
 	}
 
+	//The method getValue is exclusively made for debugging, and is not considered a functional method
+	public int getValue() {
+			return value;
+	}
 }

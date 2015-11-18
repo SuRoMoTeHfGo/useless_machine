@@ -17,29 +17,33 @@ import lejos.hardware.sensor.*;// Importing all sensor classes
 public class Main {
 
 	public static void main(String[] args) throws Exception {
-
+		//Declaring ports
 		Brick brick = BrickFinder.getDefault();
-		// Port s1 = brick.getPort("S1"); // soundsensor
+		Port s1 = brick.getPort("S1"); // soundsensor
 		Port s3 = brick.getPort("S3"); // ultrasonicsensor
 		Port s4 = brick.getPort("S4"); // touchsensor
 
-		// SoundReader sounds = new SoundReader(s1);
+		//Making objects
+		SoundReader ears = new SoundReader(s1);
 		UltrasonicReader eyes = new UltrasonicReader(s3);
 		PressureReader leverStatus = new PressureReader(s4);
 		Commands executor = new Commands();
 		AudioPlayer iPod = new AudioPlayer(100);
 		Outcomes pusher = new Outcomes(executor, iPod);
-		Analysis brain = new Analysis(leverStatus, eyes, iPod, executor,pusher); //(leverStatus, eyes, sounds, iPod, executor);
-
+		Analysis brain = new Analysis(leverStatus, eyes, iPod, executor,pusher);
 
 		// Initialize program
 		brain.init();
 
-		/*We might consider a while loop with changing terms, as a way of ending the program sequence
+		/*
+		*We might consider a while loop with changing terms, as a way of ending the program sequence
 		*At this point the only desired functionality is for the program to loop infinitely
 		*/
+
 		while(true) {
-			brain.chooseOutcome();
+
+			brain.chooseOutcome();//logic is implemented in the class Analysis
+
 		}
 	}//void main
 }//class
