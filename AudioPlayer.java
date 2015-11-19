@@ -33,7 +33,7 @@ public class AudioPlayer {
 		Sound.setVolume(masterVolume);
 	}
 	public static int generateSound(File file) throws Exception {
-		return Sound.playSample(file, 50);
+		return Sound.playSample(file);
 	}
 	
 	public void getSound() {
