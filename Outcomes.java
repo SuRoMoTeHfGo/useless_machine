@@ -51,7 +51,7 @@ public class Outcomes {
 	public void peekPush() throws Exception {
 		iPod.setSound("jump.wav");
 		iPod.getSound();
-		executor.moveArm(-30, 350, false);
+		executor.moveArm(-50, 350, false);
 		executor.sleep(1750);
 		executor.moveArm(0, 350, false);
 		executor.sleep(750);
@@ -61,7 +61,7 @@ public class Outcomes {
 	//In method delayPush lever is pushed after a delay
 	public void delayPush() throws Exception {
 		executor.sleep(1000);
-		executor.moveArm(-30, 350, false);
+		executor.moveArm(-50, 350, false);
 		executor.sleep(1500);
 		iPod.setSound("coin.wav");
 		executor.moveArm(-100, 40, true);
@@ -72,10 +72,14 @@ public class Outcomes {
 	}
 	//The lever is pushed after a longer delay, to make it seem like the user has won.
 	public void longDelayPush() throws Exception {
-		executor.sleep(3000);
-		executor.moveArm(-30, 350, false);
+		executor.sleep(2000);
+		executor.moveArm(-50, 350, false);
 		executor.sleep(1500);
-		executor.moveArm(-100, 40, false);
+		iPod.setSound("coin.wav");
+		executor.moveArm(-100, 40, true);
+		executor.sleep(1500);
+		iPod.getSound();
+		executor.sleep(250);
 		executor.moveArm(0, 350, false);
 	}
 
@@ -106,6 +110,26 @@ public class Outcomes {
 		dodge(0);
 		//eventually it hits the lever
 		classicPush();
+	}
+	
+	public void hideLever(long ms) throws Exception {
+		iPod.setSound("coin.wav");
+		iPod.getSound();
+		executor.moveLever(0, 300);
+		executor.sleep(ms);
+		executor.moveLever(70, 150);
+	}
+	
+	public void driveAway(int distance, int speed) throws Exception {
+		iPod.setSound("pokemon.wav");
+		iPod.getSound();
+		executor.drive(distance, speed);
+	}
+	
+	// Play soundsamples
+	public void playSample(String filename) throws Exception {
+		iPod.setSound(filename);
+		iPod.getSound();
 	}
 
 	/*

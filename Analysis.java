@@ -14,6 +14,7 @@ import lejos.hardware.Keys;
 import lejos.hardware.sensor.SensorModes;
 import lejos.robotics.SampleProvider;
 import lejos.hardware.sensor.*;
+import lejos.utility.Stopwatch;
 
 //Java classes
 import java.util.Random;
@@ -26,6 +27,7 @@ public class Analysis {
 	private Commands executor;
 	private Outcomes pusher;
 	private Random randomVal;
+	private Stopwatch timer = new Stopwatch();
 
 	public Analysis(PressureReader leverStatus, UltrasonicReader eyes, SoundReader ears, AudioPlayer iPod, Commands executor, Outcomes pusher) {
 		this.leverStatus = leverStatus;
@@ -41,6 +43,7 @@ public class Analysis {
 		randomVal = new Random();
 		return randomVal.nextInt(max - min) + min;
 	}
+	
 
 	/*
 	*The method below processes the fact that the lever has been hit
@@ -98,29 +101,21 @@ public class Analysis {
 	*The first 5 lever hits are supposed to go as normal, therefore a counter is placed in the method AnalyzePressure()
 	*/
 	private void analyzeSpace() throws Exception {
-
-		if(eyes.registered() && getRandomVal(0, 300000) < 2){
-			if (getRandomVal(0, 2) > 0.5) {
-				executor.moveLever(0, 200);
-			} else {
-				executor.drive(1200, -1200, 300);
-			}
-		} else {
-			executor.moveLever(70, 200);
+		if (!leverStatus.toggled() && eyes.registered() && timer.elapsed() > 10000 && getRandomVal(0, 4500) < 2) {
+			pusher.hideLever(100);
+		} else if (!leverStatus.toggled() && eyes.registered() && timer.elapsed() > 10000 && getRandomVal(0, 4500) < 1) {
+			pusher.hideLever(0);
+			pusher.driveAway(650, 800);
 		}
-
 	}
 
 	/*The method analyzeSounds is supposed to be the robot's ears
 	*Desired reactions to certain sound levels could be playing a track from the class AudioPlayer
 	*/
 	private void analyzeSounds() throws Exception {
-		while (true) {
-			System.out.println(ears.getValue());
-			if (ears.triggered()) {
-				pusher.classicPush();
-				System.out.println("Limit hit");
-			}
+		if (ears.triggered() && !leverStatus.toggled() && timer.elapsed() > 30000) {
+			pusher.hideLever(0);
+			pusher.driveAway(300, 800);
 		}
 	}
 
@@ -131,8 +126,8 @@ public class Analysis {
 	//init method that calls the other methods
 	public void chooseOutcome() throws Exception {
 		analyzePressure();
-		// analyzeSpace();
-		// analyzeSounds();
+		analyzeSpace();
+		analyzeSounds();
 	}//void
 
 }//class
