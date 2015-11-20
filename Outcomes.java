@@ -26,7 +26,7 @@ public class Outcomes{
 		this.iPod = iPod;
 	}
 
-	
+
 	//Method classicPush is the "normal" hit lever outcome
 	public void classicPush() throws Exception {
 		executor.moveArm(-100, 200, false);
@@ -50,17 +50,14 @@ public class Outcomes{
 	//The robot peeks first, then retires. After a delay, it hits the lever
 	public void peekPush() throws Exception {
 		iPod.getSound("jump.wav");
-		executor.moveArm(-50, 350, false);
-		executor.sleep(1750);
-		executor.moveArm(0, 350, false);
-		executor.sleep(750);
+		peek();
 		fastPush();
 	}
 
 	//In method delayPush lever is pushed after a delay
 	public void delayPush() throws Exception {
 		executor.sleep(1000);
-		executor.moveArm(-50, 350, false);
+		executor.moveArm(-70, 350, false);
 		executor.sleep(1500);
 		executor.moveArm(-100, 40, true);
 		executor.sleep(1500);
@@ -70,14 +67,8 @@ public class Outcomes{
 	}
 	//The lever is pushed after a longer delay, to make it seem like the user has won.
 	public void longDelayPush() throws Exception {
-		executor.sleep(2000);
-		executor.moveArm(-50, 350, false);
-		executor.sleep(1500);
-		executor.moveArm(-100, 40, true);
-		executor.sleep(1500);
-		iPod.getSound("coin.wav");
-		executor.sleep(250);
-		executor.moveArm(0, 350, false);
+		executor.sleep(1000);
+		delayPush();
 	}
 
 	//In methods dodgePush and fastDodgePush, the bot is unable to hit the lever, as it hides the lever from itself
@@ -87,15 +78,15 @@ public class Outcomes{
 	}
 	public void fastDodgePush() throws Exception {
 		dodge(150);
-		sleep(400);
+		executor.sleep(400);
 		fastPush();
 	}
-	
+
 
 	//In method cenaPush the robot goes into a "crazy mode", playing music while doing several attempts to hit the lever
 	public void cenaPush() throws Exception {
 		//play John Cena song
-		iPod.getSound("cena.wav");
+		//iPod.getSound("cena.wav");
 
 		executor.sleep(1550);//wait for 1,5 seconds
 		//dodge a few times so the bot can't hit the lever
@@ -108,29 +99,36 @@ public class Outcomes{
 		//eventually it hits the lever
 		classicPush();
 	}
-	
+	public void holdPush()throws Exception{
+		peek();
+		executor.sleep(500);
+		executor.moveArm(-100,200,false);
+		executor.sleep(1000);
+		executor.moveArm(0,400,false);
+
+	}
 	public void hideLever(long ms) throws Exception {
 		iPod.getSound("coin.wav");
 		executor.moveLever(0, 300);
 		executor.sleep(ms);
 		executor.moveLever(70, 150);
 	}
-	
+
 	public void driveAway(int distance, int speed) throws Exception {
 		iPod.getSound("pokemon.wav");
 		executor.drive(distance, speed);
 	}
-	
+
 	// Play soundsamples
 	public void playSample(String filename) throws Exception {
 		iPod.getSound(filename);
 	}
 
 	/*
-		*Private methods
-		*/
+	*Private methods
+	*/
 
-	//Method  dodge is exclusively used locally by other methods
+	//The robot hides the lever from itself while it tries to toggle it
 	private void dodge(long ms) throws Exception {
 		executor.sleep(ms);
 		executor.moveArm(-90, 350, true);
@@ -138,5 +136,11 @@ public class Outcomes{
 		executor.moveArm(0, 200, false);
 		executor.moveLever(70, 25);
 	}
-
+	//The robot lifts the arm a small distance so it seems like it peeks at the lever
+	private void peek()throws Exception{
+		executor.moveArm(-50, 200, false);
+		executor.sleep(1750);
+		executor.moveArm(0, 350, false);
+		executor.sleep(750);
+	}
 }//class
