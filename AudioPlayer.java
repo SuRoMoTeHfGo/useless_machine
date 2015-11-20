@@ -36,7 +36,8 @@ public class AudioPlayer {
 		return Sound.playSample(file);
 	}
 	
-	public void getSound() {
+	public void getSound(String name) {
+		setSound(name)
 		Runnable task = new Runnable() {
 			public void run() {
 				

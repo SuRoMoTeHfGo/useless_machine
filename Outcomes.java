@@ -39,18 +39,16 @@ public class Outcomes {
 		executor.moveArm(0, 100, false);
 	}
 	public void fastPush() throws Exception {
-		iPod.setSound("wah.wav");
 		executor.moveArm(-100, 350, true);
 		executor.sleep(125);
-		iPod.getSound();
+		iPod.getSound("wah.wav");
 		executor.sleep(125);
 		executor.moveArm(0, 400, false);
 	}
 
 	//The robot peeks first, then retires. After a delay, it hits the lever
 	public void peekPush() throws Exception {
-		iPod.setSound("jump.wav");
-		iPod.getSound();
+		iPod.getSound("jump.wav");
 		executor.moveArm(-50, 350, false);
 		executor.sleep(1750);
 		executor.moveArm(0, 350, false);
@@ -63,10 +61,9 @@ public class Outcomes {
 		executor.sleep(1000);
 		executor.moveArm(-50, 350, false);
 		executor.sleep(1500);
-		iPod.setSound("coin.wav");
 		executor.moveArm(-100, 40, true);
 		executor.sleep(1500);
-		iPod.getSound();
+		iPod.getSound("coin.wav");
 		executor.sleep(250);
 		executor.moveArm(0, 350, false);
 	}
@@ -75,10 +72,9 @@ public class Outcomes {
 		executor.sleep(2000);
 		executor.moveArm(-50, 350, false);
 		executor.sleep(1500);
-		iPod.setSound("coin.wav");
 		executor.moveArm(-100, 40, true);
 		executor.sleep(1500);
-		iPod.getSound();
+		iPod.getSound("coin.wav");
 		executor.sleep(250);
 		executor.moveArm(0, 350, false);
 	}
@@ -97,8 +93,7 @@ public class Outcomes {
 	//In method cenaPush the robot goes into a "crazy mode", playing music while doing several attempts to hit the lever
 	public void cenaPush() throws Exception {
 		//play John Cena song
-		iPod.setSound("cena.wav");
-		iPod.getSound();
+		iPod.getSound("cena.wav");
 
 		executor.sleep(1550);//wait for 1,5 seconds
 		//dodge a few times so the bot can't hit the lever
@@ -113,23 +108,20 @@ public class Outcomes {
 	}
 	
 	public void hideLever(long ms) throws Exception {
-		iPod.setSound("coin.wav");
-		iPod.getSound();
+		iPod.getSound("coin.wav");
 		executor.moveLever(0, 300);
 		executor.sleep(ms);
 		executor.moveLever(70, 150);
 	}
 	
 	public void driveAway(int distance, int speed) throws Exception {
-		iPod.setSound("pokemon.wav");
-		iPod.getSound();
+		iPod.getSound("pokemon.wav");
 		executor.drive(distance, speed);
 	}
 	
 	// Play soundsamples
 	public void playSample(String filename) throws Exception {
-		iPod.setSound(filename);
-		iPod.getSound();
+		iPod.getSound(filename);
 	}
 
 	/*
