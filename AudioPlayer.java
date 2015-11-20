@@ -35,11 +35,12 @@ public class AudioPlayer {
 
 	//Generates sound value
 	public static int generateSound(File file) throws Exception {
-		return Sound.playSample(file, 50);
+		return Sound.playSample(file);
 	}
 
 	//Runs sound sample, checking for errors
-	public void getSound() {
+	public void getSound(String name) {
+		setSound(name);
 		Runnable task = new Runnable() {
 			public void run() {
 

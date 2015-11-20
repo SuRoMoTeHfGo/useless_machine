@@ -21,13 +21,12 @@ import java.io.*;
 public class Commands {
 
 	// This method drives the robot left and then right (back to the starting position)
-	public void drive(int rotateTo, int rotateNext, int speed) throws Exception {
+	public void drive(int distance, int speed) throws Exception {
 
 		// Motor.C
 
 		Motor.C.setSpeed(speed);
-		Motor.C.rotateTo(rotateTo, false); // Drive one direction
-		Motor.C.rotateTo(rotateNext, false); // Drive one direction
+		Motor.C.rotateTo(distance, false); // Drive one direction
 		Motor.C.rotateTo(0, false); // Drive other direction
 	}
 

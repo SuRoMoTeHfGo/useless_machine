@@ -14,6 +14,7 @@ import lejos.hardware.Keys;
 import lejos.hardware.sensor.SensorModes;
 import lejos.robotics.SampleProvider;
 import lejos.hardware.sensor.*;
+import lejos.utility.Stopwatch;
 
 //Java classes
 import java.util.Random;
@@ -27,6 +28,7 @@ public class Analysis {
 	private Commands executor;
 	private Outcomes pusher;
 	private Random randomVal;
+	private Stopwatch timer = new Stopwatch();
 
 	//Constructor
 	public Analysis(PressureReader leverStatus, UltrasonicReader eyes, SoundReader ears, AudioPlayer iPod, Commands executor, Outcomes pusher) {
@@ -43,6 +45,7 @@ public class Analysis {
 		randomVal = new Random();
 		return randomVal.nextInt(max - min) + min;
 	}
+	
 
 	/*
 	*The method below processes the fact that the lever has been hit
@@ -107,33 +110,30 @@ public class Analysis {
 	*It registeres wether someone is attempting to hit the lever
 	*At certain outcomes, decided by a random variable, the robot will hide the lever
 	*The first 5 lever hits are supposed to go as normal, therefore a counter is placed in the method AnalyzePressure()
+	
+	_____________________________-----------------------------_____________________________-----------------------------_
+	
+	Try to implement the stopwatch function into analyzeSpace() that makes the ultrasonic sensor only read one value in a given time period.
+	Ex. the timer starts when the ultrasonic sensor is triggered, and the main funtion for the sensor can only be initiazed if it is triggered for a little while.
+	Also try to implement a switch case where it's more likely to trigger nothing at all, just like the method above. 
+	Over og ut.
 	*/
-	private void analyzeSpace() throws Exception {
-
-		if(eyes.registered() && getRandomVal(0, 2000) < 2){
-
-			if (getRandomVal(0, 2) > 0.5) {
-				executor.moveLever(0, 200);
-
-			} else {
-				executor.drive(1200, -1200, 300);
-			}
-		} else {
-			executor.moveLever(70, 200);
+	private void analyzeSpace() throws Exception { 
+		if (!leverStatus.toggled() && eyes.registered() && timer.elapsed() > 10000 && getRandomVal(0, 4500) < 2) {
+			pusher.hideLever(100);
+		} else if (!leverStatus.toggled() && eyes.registered() && timer.elapsed() > 10000 && getRandomVal(0, 4500) < 1) {
+			pusher.hideLever(0);
+			pusher.driveAway(650, 800);
 		}
-
 	}
 
 	/*The method analyzeSounds is supposed to be the robot's ears
 	*Desired reactions to certain sound levels could be moving or reacting with a sound effect
 	*/
 	private void analyzeSounds() throws Exception {
-		while (true) {
-			System.out.println(ears.getValue());
-			if (ears.triggered()) {
-				pusher.classicPush();
-				System.out.println("Limit hit");
-			}
+		if (ears.triggered() && !leverStatus.toggled() && timer.elapsed() > 30000) {
+			pusher.hideLever(0);
+			pusher.driveAway(300, 800);
 		}
 	}
 
