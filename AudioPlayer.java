@@ -37,7 +37,7 @@ public class AudioPlayer {
 	}
 	
 	public void getSound(String name) {
-		setSound(name)
+		setSound(name);
 		Runnable task = new Runnable() {
 			public void run() {
 				
