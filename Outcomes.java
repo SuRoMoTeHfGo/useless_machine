@@ -87,7 +87,7 @@ public class Outcomes{
 	}
 	public void fastDodgePush() throws Exception {
 		dodge(150);
-		sleep(400);
+		executor.sleep(400);
 		fastPush();
 	}
 	
@@ -95,7 +95,7 @@ public class Outcomes{
 	//In method cenaPush the robot goes into a "crazy mode", playing music while doing several attempts to hit the lever
 	public void cenaPush() throws Exception {
 		//play John Cena song
-		iPod.getSound("cena.wav");
+		//iPod.getSound("cena.wav");
 
 		executor.sleep(1550);//wait for 1,5 seconds
 		//dodge a few times so the bot can't hit the lever
