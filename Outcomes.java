@@ -56,17 +56,20 @@ public class Outcomes{
 
 	//In method delayPush lever is pushed after a delay
 	public void delayPush() throws Exception {
+		//Wait for a second, then hit the lever normally
 		executor.sleep(1000);
 		executor.moveArm(-70, 350, false);
 		executor.sleep(1500);
 		executor.moveArm(-100, 40, true);
 		executor.sleep(1500);
+		//wait a bit on the top before returning
 		iPod.getSound("coin.wav");
 		executor.sleep(250);
 		executor.moveArm(0, 350, false);
 	}
 	//The lever is pushed after a longer delay, to make it seem like the user has won.
 	public void longDelayPush() throws Exception {
+		//Wait for a second before executing delayPush
 		executor.sleep(1000);
 		delayPush();
 	}
@@ -81,7 +84,6 @@ public class Outcomes{
 		executor.sleep(400);
 		fastPush();
 	}
-
 
 	//In method cenaPush the robot goes into a "crazy mode", playing music while doing several attempts to hit the lever
 	public void cenaPush() throws Exception {
@@ -99,14 +101,16 @@ public class Outcomes{
 		//eventually it hits the lever
 		classicPush();
 	}
+	//The robot peeks at the lever, then it hits and holds the lever for a second
 	public void holdPush()throws Exception{
 		peek();
 		executor.sleep(500);
 		executor.moveArm(-100,200,false);
 		executor.sleep(1000);
-		executor.moveArm(0,400,false);
-
+		executor.moveArm(0,100,false);
 	}
+
+	//Hides the lever from user
 	public void hideLever(long ms) throws Exception {
 		iPod.getSound("coin.wav");
 		executor.moveLever(0, 300);
@@ -114,6 +118,7 @@ public class Outcomes{
 		executor.moveLever(70, 150);
 	}
 
+	//The robot "dodges" its user by switching position
 	public void driveAway(int distance, int speed) throws Exception {
 		iPod.getSound("pokemon.wav");
 		executor.drive(distance, speed);

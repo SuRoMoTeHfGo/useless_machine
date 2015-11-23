@@ -46,7 +46,7 @@ public class AudioPlayer {
 
 				try {
 					file = new File(filename);
-					int wavfilelength = generateSound(file);
+					int filelength = generateSound(file);
 				} catch (Exception e){
 					System.out.println(e);
 				}

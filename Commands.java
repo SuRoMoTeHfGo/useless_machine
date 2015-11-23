@@ -20,27 +20,25 @@ import java.io.*;
 
 public class Commands {
 
-	// This method drives the robot left and then right (back to the starting position)
+	// This method drives the robot to a desired distance
 	public void drive(int distance, int speed) throws Exception {
 
 		// Motor.C
 
 		Motor.C.setSpeed(speed);
-		Motor.C.rotateTo(distance, false); // Drive one direction
-		Motor.C.rotateTo(0, false); // Drive other direction
+		Motor.C.rotateTo(distance, false); // Drive one direction, to given position
+		Motor.C.rotateTo(0, false); // Return to original position
 	}
-
+	// This method moves the "arm" to a desired position, at a desired speed
 	public void moveArm(int rotation, int motorspeed, boolean immediateReturn) throws Exception {
-		/* This method moves the "arm" up and then down again */
-		//We should consider the option of letting the lever return back to place at a slower pace, or even take a pause at the top
+
 		// Motor.B
 
 		Motor.B.setSpeed(motorspeed);
 		Motor.B.rotateTo(rotation, immediateReturn); // Top: rotateTo(-100)
 	}
-
+	// This method moves the lever to a desired position
 	public void moveLever(int rotation, int motorspeed) throws Exception {
-		// This method moves the lever up and down again
 
 		//motor D
 		Motor.D.setSpeed(motorspeed);

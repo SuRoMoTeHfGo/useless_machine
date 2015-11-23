@@ -45,7 +45,7 @@ public class Analysis {
 		randomVal = new Random();
 		return randomVal.nextInt(max - min) + min;
 	}
-	
+
 
 	/*
 	*The method below processes the fact that the lever has been hit
@@ -110,15 +110,14 @@ public class Analysis {
 	*It registeres wether someone is attempting to hit the lever
 	*At certain outcomes, decided by a random variable, the robot will hide the lever
 	*The first 5 lever hits are supposed to go as normal, therefore a counter is placed in the method AnalyzePressure()
-	
+
 	_____________________________-----------------------------_____________________________-----------------------------_
-	
+
 	Try to implement the stopwatch function into analyzeSpace() that makes the ultrasonic sensor only read one value in a given time period.
 	Ex. the timer starts when the ultrasonic sensor is triggered, and the main funtion for the sensor can only be initiazed if it is triggered for a little while.
-	Also try to implement a switch case where it's more likely to trigger nothing at all, just like the method above. 
-	Over og ut.
+	Also try to implement a switch case where it's more likely to trigger nothing at all, just like the method above.
 	*/
-	private void analyzeSpace() throws Exception { 
+	private void analyzeSpace() throws Exception {
 		if (!leverStatus.toggled() && eyes.registered() && timer.elapsed() > 10000 && getRandomVal(0, 4500) < 2) {
 			pusher.hideLever(100);
 		} else if (!leverStatus.toggled() && eyes.registered() && timer.elapsed() > 10000 && getRandomVal(0, 4500) < 1) {
@@ -127,7 +126,8 @@ public class Analysis {
 		}
 	}
 
-	/*The method analyzeSounds is supposed to be the robot's ears
+	/*
+	*The method analyzeSounds is supposed to be the robot's ears
 	*Desired reactions to certain sound levels could be moving or reacting with a sound effect
 	*/
 	private void analyzeSounds() throws Exception {
