@@ -21,8 +21,6 @@ public class PressureReader {
 	private EV3TouchSensor touchSensor;
 	private SampleProvider touchReader;
 	private Port port;
-	private double value = 0.01;
-	boolean black = false;
 
 	//constructor
 	public PressureReader(Port port) {
