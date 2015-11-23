@@ -32,12 +32,18 @@ public class Main {
 		Outcomes pusher = new Outcomes(executor, iPod);
 		Analysis brain = new Analysis(leverStatus, eyes, ears, iPod, executor, pusher);
 
-		// Initialize program
+		//Looking for a sound to initiate program
+		while(!ears.triggered()){
+			executor.moveLever(0,200);
+		}
+
+		// Initiate program
 		brain.init();
+
 
 		/*
 		*We might consider a while loop with changable terms, as a way of ending the program sequence
-		*At this point the only desired functionality is for the program to loop infinitely
+		*At this point the only desired functionality is for the program to loop infinitely, and end by switching off manually
 		*/
 
 		while(true) {

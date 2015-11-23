@@ -56,9 +56,9 @@ public class Analysis {
 		//Checks wether the lever is on or off
 		if(leverStatus.toggled()) {
 			/*Switch case below is designed to generate a number of seemingly random outcomes
-			*In 9 out of 25 cases, the bot does a special move
+			*In 9 out of 25 outcomes, the bot does a special move
 			*There are 10 different moves in total
-			*The "default" case contains the standart way to hit the lever
+			*The "default" case contains the standart way to hit the lever, and happens in 14 out of 25 outcomes
 			*/
 
 			int value = getRandomVal(0, 24);
@@ -111,11 +111,9 @@ public class Analysis {
 	*At certain outcomes, decided by a random variable, the robot will hide the lever
 	*The first 5 lever hits are supposed to go as normal, therefore a counter is placed in the method AnalyzePressure()
 
-	_____________________________-----------------------------_____________________________-----------------------------_
-
-	Try to implement the stopwatch function into analyzeSpace() that makes the ultrasonic sensor only read one value in a given time period.
-	Ex. the timer starts when the ultrasonic sensor is triggered, and the main funtion for the sensor can only be initiazed if it is triggered for a little while.
-	Also try to implement a switch case where it's more likely to trigger nothing at all, just like the method above.
+	*Implement the stopwatch function into analyzeSpace() that makes the ultrasonic sensor only read one value in a given time period.
+	*Ex. the timer starts when the ultrasonic sensor is triggered, and the main funtion for the sensor can only be initiazed if it is triggered for a little while.
+	*It's more likely to trigger nothing at all, rather than any of the cases, just like the method above.
 	*/
 	private void analyzeSpace() throws Exception {
 		if (!leverStatus.toggled() && eyes.registered() && timer.elapsed() > 10000 && getRandomVal(0, 4500) < 2) {
