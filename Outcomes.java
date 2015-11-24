@@ -61,10 +61,10 @@ public class Outcomes{
 		executor.moveArm(-70, 350, false);
 		executor.sleep(1500);
 		executor.moveArm(-100, 40, true);
-		executor.sleep(1500);
-		//wait a bit on the top before returning
+		executor.sleep(150);
 		iPod.getSound("coin.wav");
-		executor.sleep(250);
+		//wait a bit on the top before returning
+		executor.sleep(1500);
 		executor.moveArm(0, 350, false);
 	}
 	//The lever is pushed after a longer delay, to make it seem like the user has won.
@@ -112,7 +112,7 @@ public class Outcomes{
 
 	//Hides the lever from user
 	public void hideLever(long ms) throws Exception {
-		iPod.getSound("coin.wav");
+		//iPod.getSound("coin.wav"); //Replace with other sound
 		executor.moveLever(0, 300);
 		executor.sleep(ms);
 		executor.moveLever(70, 150);

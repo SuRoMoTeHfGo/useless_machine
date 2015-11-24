@@ -40,6 +40,7 @@ public class SoundReader {
 		return soundSample[0];
 	} // getVaule
 
+	//Returns true if it registers a sound above a certain decibel level
 	public boolean triggered() {
 		soundReader.fetchSample(soundSample, 0);
 		return soundSample[0] > 0.9;
