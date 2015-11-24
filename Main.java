@@ -33,8 +33,8 @@ public class Main {
 		Analysis brain = new Analysis(leverStatus, eyes, ears, iPod, executor, pusher);
 
 		//Looking for a sound to initiate program
-		while(!ears.triggered()){
-			executor.moveLever(0,200);
+		while(!ears.triggered()) {
+			executor.moveLever(0, 200);
 		}
 
 		// Initiate program

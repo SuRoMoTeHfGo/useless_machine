@@ -19,12 +19,10 @@ import lejos.hardware.sensor.*;
 
 public class SoundReader {
 
+	private float[] soundSample;
 	private SampleProvider soundReader;
 	private	NXTSoundSensor soundSensor;
-	private float[] soundSample;
 	private Port port;
-	private float value;
-	boolean volume = false;
 
 	//Constructor
 	public SoundReader(Port port) {

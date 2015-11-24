@@ -16,12 +16,12 @@ import lejos.robotics.SampleProvider;
 import lejos.hardware.sensor.*;
 
 public class UltrasonicReader {
-
+	
+	private float[] ultrasonicSample;
 	private EV3UltrasonicSensor ultrasonicSensor;
 	private SampleProvider ultrasonicReader;
 	private Port port;
-	private float[] ultrasonicSample;
-
+	
 	//constructor
 	public UltrasonicReader(Port port) {
 		this.port = port;

@@ -137,14 +137,15 @@ public class Analysis {
 
 	//The init method lifts the hidden lever, thus the game is started
 	public void init() throws Exception {
-		executor.moveLever(70, 200);
+		iPod.getSound("startup.wav");
+		executor.moveLever(70, 50);
 	}
 
 	//Method chooseOutcome calls the other functional methods
 	public void chooseOutcome() throws Exception {
 		analyzePressure();
 		analyzeSpace();
-		analyzeSounds();
+		// analyzeSounds();
 	}//void
 
 }//class

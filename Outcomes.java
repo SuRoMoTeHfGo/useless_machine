@@ -58,9 +58,9 @@ public class Outcomes{
 	public void delayPush() throws Exception {
 		//Wait for a second, then hit the lever normally
 		executor.sleep(1000);
-		executor.moveArm(-70, 350, false);
+		executor.moveArm(-50, 350, false);
 		executor.sleep(1500);
-		executor.moveArm(-100, 40, true);
+		executor.moveArm(-100, 50, true);
 		executor.sleep(150);
 		iPod.getSound("coin.wav");
 		//wait a bit on the top before returning
@@ -70,7 +70,7 @@ public class Outcomes{
 	//The lever is pushed after a longer delay, to make it seem like the user has won.
 	public void longDelayPush() throws Exception {
 		//Wait for a second before executing delayPush
-		executor.sleep(1000);
+		executor.sleep(750);
 		delayPush();
 	}
 
@@ -98,21 +98,21 @@ public class Outcomes{
 		dodge(10);
 		dodge(0);
 		dodge(0);
-		//eventually it hits the lever
+		//eventually it hits the lever to normalize it
 		classicPush();
 	}
 	//The robot peeks at the lever, then it hits and holds the lever for a second
 	public void holdPush()throws Exception{
 		peek();
-		executor.sleep(500);
-		executor.moveArm(-100,200,false);
+		executor.sleep(250);
+		executor.moveArm(-100, 200, false);
 		executor.sleep(1000);
-		executor.moveArm(0,100,false);
+		executor.moveArm(0, 100, false);
 	}
 
 	//Hides the lever from user
 	public void hideLever(long ms) throws Exception {
-		//iPod.getSound("coin.wav"); //Replace with other sound
+		iPod.getSound("down.wav");
 		executor.moveLever(0, 300);
 		executor.sleep(ms);
 		executor.moveLever(70, 150);
