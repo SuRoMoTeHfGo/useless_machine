@@ -33,6 +33,10 @@ public class Main {
 		Outcomes pusher = new Outcomes(executor, iPod);
 		Analysis brain = new Analysis(leverStatus, eyes, ears, iPod, executor, pusher);
 		
+		while(!ears.triggered()){
+			executor.moveLever(0,200);
+		}
+		
 		// Initialize program
 		brain.init();
 
