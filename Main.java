@@ -46,9 +46,7 @@ public class Main {
 		*/
 
 		while(true) {
-
 			brain.chooseOutcome();//logic is implemented in the class Analysis
-
 		}
 	}//void main
 }//class

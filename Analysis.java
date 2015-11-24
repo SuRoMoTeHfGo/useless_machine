@@ -63,47 +63,41 @@ public class Analysis {
 
 			int value = getRandomVal(0, 24);
 			switch (value) {
-				case 1 :
-					pusher.fastDodgePush();
-					break;
+			case 1 :
+				pusher.fastDodgePush();
+				break;
 
-				case 2:
-					pusher.fastPush();
-					break;
+			case 2:
+				pusher.fastPush();
+				break;
 
-				case 3:
-					pusher.slowPush();
-					break;
+			case 3:
+				pusher.slowPush();
+				break;
 
-				case 4:
-					pusher.peekPush();
-					break;
+			case 4:
+				pusher.peekPush();
+				break;
 
-				case 5:
-					pusher.dodgePush();
-					break;
+			case 5:
+				pusher.dodgePush();
+				break;
 
-				case 6:
-					pusher.delayPush();
-					break;
+			case 6:
+				pusher.delayPush();
+				break;
 
-				case 7:
-					pusher.cenaPush();
-					break;
+			case 7:
+				pusher.cenaPush();
+				break;
 
-				case 8:
-					pusher.longDelayPush();
-					break;
+			case 8:
+				pusher.longDelayPush();
+				break;
 
-				/*
-				case 9:
-					pusher.holdPush();
-					break;
-				*/
-
-				default:
-					pusher.classicPush();
-					break;
+			default:
+				pusher.classicPush();
+				break;
 			}//switch
 		}
 	}//void
