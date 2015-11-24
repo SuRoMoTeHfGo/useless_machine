@@ -110,7 +110,7 @@ public class Outcomes{
 	}
 	
 	public void hideLever(long ms) throws Exception {
-		iPod.getSound("coin.wav");
+		iPod.getSound("down.wav");
 		executor.moveLever(0, 300);
 		executor.sleep(ms);
 		executor.moveLever(70, 150);
