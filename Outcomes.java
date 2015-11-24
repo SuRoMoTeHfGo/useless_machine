@@ -35,9 +35,9 @@ public class Outcomes{
 
 	//Methods slowPush and fastPush, push the lever at different speeds
 	public void slowPush() throws Exception {
-		executor.moveArm(-70, 300, false);
-		executor.moveArm(-100, 100, false);
-		executor.moveArm(0, 100, false);
+		executor.moveArm(-45, 250, false);
+		executor.moveArm(-100, 40, false);
+		executor.moveArm(0, 80, false);
 	}
 	public void fastPush() throws Exception {
 		executor.moveArm(-100, 350, true);
@@ -61,7 +61,7 @@ public class Outcomes{
 		executor.moveArm(-50, 350, false);
 		executor.sleep(1500);
 		executor.moveArm(-100, 50, true);
-		executor.sleep(150);
+		executor.sleep(650);
 		iPod.getSound("coin.wav");
 		//wait a bit on the top before returning
 		executor.sleep(1500);
@@ -103,16 +103,14 @@ public class Outcomes{
 	}
 	//The robot peeks at the lever, then it hits and holds the lever for a second
 	public void holdPush()throws Exception{
-		peek();
-		executor.sleep(250);
-		executor.moveArm(-100, 200, false);
-		executor.sleep(1000);
-		executor.moveArm(0, 100, false);
+		executor.moveArm(-100, 300, false);
+		executor.sleep(1750);
+		executor.moveArm(0, 250, false);
 	}
 
 	//Hides the lever from user
 	public void hideLever(long ms) throws Exception {
-		iPod.getSound("down.wav");
+		iPod.getSound("pipe.wav");
 		executor.moveLever(0, 300);
 		executor.sleep(ms);
 		executor.moveLever(70, 150);

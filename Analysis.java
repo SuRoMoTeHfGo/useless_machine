@@ -119,7 +119,6 @@ public class Analysis {
 		if (!leverStatus.toggled() && eyes.registered() && timer.elapsed() > 10000 && getRandomVal(0, 4500) < 2) {
 			pusher.hideLever(100);
 		} else if (!leverStatus.toggled() && eyes.registered() && timer.elapsed() > 10000 && getRandomVal(0, 4500) < 1) {
-			pusher.hideLever(0);
 			pusher.driveAway(650, 800);
 		}
 	}
