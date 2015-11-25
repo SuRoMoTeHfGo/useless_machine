@@ -35,4 +35,4 @@ public class UltrasonicReader {
 		ultrasonicReader.fetchSample(ultrasonicSample, 0); // Save values to first position of the EV3-uttrasonicsensor float table
 		return ultrasonicSample[0] < 0.13;
 	}
-}
+}//class

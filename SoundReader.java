@@ -37,5 +37,5 @@ public class SoundReader {
 		soundReader.fetchSample(soundSample, 0);
 		return soundSample[0] > 0.9;
 	}
-	
-}
+
+}//class
