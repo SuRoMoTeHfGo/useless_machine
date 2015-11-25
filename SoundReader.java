@@ -32,16 +32,15 @@ public class SoundReader {
 		soundSample = new float[soundReader.sampleSize()];
 	}
 
-	//reads sound sample, returns true or false
-	public float getValue() {
-		soundReader.fetchSample(soundSample, 0);
-		return soundSample[0];
-	} // getVaule
-
 	//Returns true if it registers a sound above a certain decibel level
 	public boolean triggered() {
 		soundReader.fetchSample(soundSample, 0);
 		return soundSample[0] > 0.9;
 	}
 
+	//Method for debugging
+	public float getValue() {
+		soundReader.fetchSample(soundSample, 0);
+		return soundSample[0];
+	} // getVaule
 }

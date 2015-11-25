@@ -29,23 +29,18 @@ public class Commands {
 		Motor.C.rotateTo(distance, false); // Drive one direction, to given position
 		Motor.C.rotateTo(0, false); // Return to original position
 	}
-	// This method moves the "arm" to a desired position, at a desired speed
-	public void moveArm(int rotation, int motorspeed, boolean immediateReturn) throws Exception {
-
-		// Motor.B
-
+	//Moves the "arm" to a desired position, at a desired speed
+	public void moveArm(int rotation, int motorspeed, boolean immediateReturn) throws Exception{
 		Motor.B.setSpeed(motorspeed);
 		Motor.B.rotateTo(rotation, immediateReturn); // Top: rotateTo(-100)
 	}
 	// This method moves the lever to a desired position
 	public void moveLever(int rotation, int motorspeed) throws Exception {
-
-		//motor D
 		Motor.D.setSpeed(motorspeed);
 		Motor.D.rotateTo(rotation); // Top: rotateTo(70)
 	}
 
-	//The method sleep is designed to give the robot a timed delay before it hits the lever.
+	//Give the robot a timed delay before it hits the lever.
 	public void sleep (long ms) throws Exception {
 		Delay.msDelay(ms);
 	}

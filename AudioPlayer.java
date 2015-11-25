@@ -33,30 +33,30 @@ public class AudioPlayer {
 		Sound.setVolume(masterVolume);
 	}
 
-	//Generates sound value
+	//Generates sound value from file
 	public static int generateSound(File file) throws Exception {
 		return Sound.playSample(file);
 	}
 
-	//Runs sound sample, checking for errors
+	//Runs sound sample, catching exceptions
 	public void getSound(String name) {
 		setSound(name);
 		Runnable task = new Runnable() {
 			public void run() {
-
 				try {
 					file = new File(filename);
-					int filelength = generateSound(file);
-				} catch (Exception e){
-					System.out.println(e);
+						int filelength = generateSound(file);
+					} catch (Exception e){
+						System.out.println(e);
 				}
 			}
 		};
 
-		new Thread(task).start();
+		new Thread(task).start();//Start thread
 	}//void
 
-	public void setSound(String name) {
+	//Set sound at desired sound file.
+	private void setSound(String name) {
 		filename = name;
 	}
 

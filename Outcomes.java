@@ -47,14 +47,14 @@ public class Outcomes{
 		executor.moveArm(0, 400, false);
 	}
 
-	//The robot peeks first, then retires. After a delay, it hits the lever
+	//The robot peeks first, then retires. After a delay, it hits the lever.
 	public void peekPush() throws Exception {
 		iPod.getSound("jump.wav");
 		peek();
 		fastPush();
 	}
 
-	//In method delayPush lever is pushed after a delay
+	//The lever is pushed after a delay
 	public void delayPush() throws Exception {
 		//Wait for a second, then hit the lever normally
 		executor.sleep(1000);
@@ -69,7 +69,7 @@ public class Outcomes{
 	}
 	//The lever is pushed after a longer delay, to make it seem like the user has won.
 	public void longDelayPush() throws Exception {
-		//Wait for a second before executing delayPush
+		//Wait for nearly a second before executing delayPush
 		executor.sleep(750);
 		delayPush();
 	}
@@ -85,23 +85,23 @@ public class Outcomes{
 		fastPush();
 	}
 
-	//In method cenaPush the robot goes into a "crazy mode", playing music while doing several attempts to hit the lever
+	//The robot goes into a "crazy mode", playing music while doing several attempts to hit the lever.
 	public void cenaPush() throws Exception {
-		//play John Cena song
+		//Plays John Cena song
 		iPod.getSound("cena.wav");
 
 		executor.sleep(1550);//wait for 1,5 seconds
-		//dodge a few times so the bot can't hit the lever
+		//Dodge a few times so the bot can't hit the lever
 		dodge(750);
 		dodge(100);
 		dodge(50);
 		dodge(10);
 		dodge(0);
 		dodge(0);
-		//eventually it hits the lever to normalize it
+		//Eventually it hits the lever to normalize it
 		classicPush();
 	}
-	
+
 	//The robot peeks at the lever, then it hits and holds the lever for a second
 	public void holdPush()throws Exception{
 		executor.moveArm(-100, 300, false);
@@ -117,19 +117,19 @@ public class Outcomes{
 		executor.moveLever(70, 150);
 	}
 
-	//The robot "dodges" its user by switching position
+	//The robot "dodges" its user by switching position, hence it prevents the lever from being hit.
 	public void driveAway(int distance, int speed) throws Exception {
 		iPod.getSound("pokemon.wav");
 		executor.drive(distance, speed);
 	}
 
-	// Play soundsamples
+	//Play soundsamples
 	public void playSample(String filename) throws Exception {
 		iPod.getSound(filename);
 	}
 
 	/*
-	*Private methods
+	*Local methods
 	*/
 
 	//The robot hides the lever from itself while it tries to toggle it
@@ -140,7 +140,7 @@ public class Outcomes{
 		executor.moveArm(0, 200, false);
 		executor.moveLever(70, 25);
 	}
-	//The robot lifts the arm a small distance so it seems like it peeks at the lever
+	//The robot lifts the arm a small distance to make it appear like it peeks at the lever
 	private void peek()throws Exception{
 		executor.moveArm(-50, 200, false);
 		executor.sleep(1750);

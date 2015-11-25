@@ -16,12 +16,12 @@ import lejos.robotics.SampleProvider;
 import lejos.hardware.sensor.*;
 
 public class UltrasonicReader {
-	
+
 	private float[] ultrasonicSample;
 	private EV3UltrasonicSensor ultrasonicSensor;
 	private SampleProvider ultrasonicReader;
 	private Port port;
-	
+
 	//constructor
 	public UltrasonicReader(Port port) {
 		this.port = port;
@@ -30,7 +30,7 @@ public class UltrasonicReader {
 		ultrasonicSample = new float[ultrasonicReader.sampleSize()]; // Register float table for EV3-uttrasonicsensor sample values
 	}
 
-	//The method registered provides the status of the airspace directly above the useless machine
+	//Provides the status of the airspace directly above the useless machine
 	public boolean registered() {
 		ultrasonicReader.fetchSample(ultrasonicSample, 0); // Save values to first position of the EV3-uttrasonicsensor float table
 		return ultrasonicSample[0] < 0.13;

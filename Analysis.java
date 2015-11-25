@@ -21,6 +21,7 @@ import java.util.Random;
 
 public class Analysis {
 
+	//Attributes
 	private PressureReader leverStatus;
 	private UltrasonicReader eyes;
 	private SoundReader ears;
@@ -40,30 +41,46 @@ public class Analysis {
 		this.pusher = pusher;
 	}
 
-	//generates a random value within decired interval, momentarily accecible by other classes
-	public int getRandomVal(int min, int max) {
-		randomVal = new Random();
-		return randomVal.nextInt(max - min) + min;
+	//Lifts the hidden lever making it available for toggling, thus the game is started
+	public void init() throws Exception {
+		waitForInit();//Loops until sound is registered
+		iPod.getSound("startup.wav");
+		executor.moveLever(70, 50);
 	}
 
+	//Calls and gathers the other functional methods, which will repeat infinitely
+	public void run() throws Exception {
+		while(true){
+		analyzePressure();
+		analyzeSpace();
+		}
+	}//void
 
+
+	//Will loop until sound is registered
+	private void waitForInit()throws Exception{
+		while(!ears.triggered()) {
+			executor.moveLever(0, 200);
+		}
+	}
 	/*
 	*The method below processes the fact that the lever has been hit
 	*It's intended to make the robot seem like it takes rushed decitions
 	*/
-
 	private void analyzePressure() throws Exception {
 		//Checks wether the lever is on or off
 		if(leverStatus.toggled()) {
-			/*Switch case below is designed to generate a number of seemingly random outcomes
+			/*
+			*Switch below is designed to generate a number of seemingly random outcomes
 			*In 9 out of 25 outcomes, the bot does a special move
 			*There are 10 different moves in total
 			*The "default" case contains the standart way to hit the lever, and happens in 14 out of 25 outcomes
 			*/
 
-			int value = getRandomVal(0, 24);
-			switch (value) {
-			case 1 :
+			int randValue = getRandomVal(0, 24);
+			switch (randValue) {
+
+			case 1:
 				pusher.fastDodgePush();
 				break;
 
@@ -106,14 +123,11 @@ public class Analysis {
 		}
 	}//void
 
-	/*The method analyseSpace uses data from the Ultrasonic sensor
+	/*
+	*The method analyseSpace uses data from the Ultrasonic sensor
 	*It registeres wether someone is attempting to hit the lever
 	*At certain outcomes, decided by a random variable, the robot will hide the lever
 	*The first 5 lever hits are supposed to go as normal, therefore a counter is placed in the method AnalyzePressure()
-
-	*Implement the stopwatch function into analyzeSpace() that makes the ultrasonic sensor only read one value in a given time period.
-	*Ex. the timer starts when the ultrasonic sensor is triggered, and the main funtion for the sensor can only be initiazed if it is triggered for a little while.
-	*It's more likely to trigger nothing at all, rather than any of the cases, just like the method above.
 	*/
 	private void analyzeSpace() throws Exception {
 		if (!leverStatus.toggled() && eyes.registered() && timer.elapsed() > 10000 && getRandomVal(0, 4500) < 2) {
@@ -123,21 +137,11 @@ public class Analysis {
 		}
 	}
 
-	//The init method lifts the hidden lever, thus the game is started
-	public void init() throws Exception {
-		iPod.getSound("startup.wav");
-		executor.moveLever(70, 50);
-	}
-	public void waitForInit()throws Exception{
-		while(!ears.triggered()) {
-			executor.moveLever(0, 200);
-		}
+	//Sub method that generates a random value within decired interval, momentarily accecible by other classes
+	private int getRandomVal(int min, int max) {
+		randomVal = new Random();
+		return randomVal.nextInt(max - min) + min;
 	}
 
-	//Method chooseOutcome calls the other functional methods
-	public void chooseOutcome() throws Exception {
-		analyzePressure();
-		analyzeSpace();
-	}//void
 
 }//class

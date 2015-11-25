@@ -28,25 +28,13 @@ public class Main {
 		UltrasonicReader eyes = new UltrasonicReader(s3);
 		PressureReader leverStatus = new PressureReader(s4);
 		Commands executor = new Commands();
-		AudioPlayer iPod = new AudioPlayer(100); //set to master volume 100
+		AudioPlayer iPod = new AudioPlayer(100); //Set master volume for soundfiles
 		Outcomes pusher = new Outcomes(executor, iPod);
 		Analysis brain = new Analysis(leverStatus, eyes, ears, iPod, executor, pusher);
 
-		//Looking for a sound to initiate program
-		brain.waitForInit();
-
 		// Initiate program
 		brain.init();
-
-		/*
-		*We might consider a while loop with changable terms, as a way of ending the program sequence
-		*At this point the only desired functionality is for the program to loop infinitely, and end by switching off manually
-		*/
-
-		while(true) {
-
-			brain.chooseOutcome();//logic is implemented in the class Analysis
-
-		}
+		//Run program
+		brain.run();//logic is implemented in the class Analysis
 	}//void main
 }//class
