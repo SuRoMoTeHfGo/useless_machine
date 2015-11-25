@@ -40,23 +40,7 @@ public class Analysis {
 		this.executor = executor;
 		this.pusher = pusher;
 	}
-
-	//Lifts the hidden lever making it available for toggling, thus the game is started
-	public void init() throws Exception {
-		waitForInit();//Loops until sound is registered
-		iPod.getSound("startup.wav");
-		executor.moveLever(70, 50);
-	}
-
-	//Calls and gathers the other functional methods, which will repeat infinitely
-	public void run() throws Exception {
-		while(true){
-		analyzePressure();
-		analyzeSpace();
-		}
-	}//void
-
-
+	
 	//Will loop until sound is registered
 	private void waitForInit()throws Exception{
 		while(!ears.triggered()) {
@@ -143,5 +127,19 @@ public class Analysis {
 		return randomVal.nextInt(max - min) + min;
 	}
 
+	//Lifts the hidden lever making it available for toggling, thus the game is started
+	public void init() throws Exception {
+		waitForInit();//Loops until sound is registered
+		iPod.getSound("startup.wav");
+		executor.moveLever(70, 50);
+	}
+
+	//Calls and gathers the other functional methods, which will repeat infinitely
+	public void run() throws Exception {
+		while(true){
+		analyzePressure();
+		analyzeSpace();
+		}
+	}//void
 
 }//class

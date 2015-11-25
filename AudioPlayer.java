@@ -32,9 +32,9 @@ public class AudioPlayer {
 		this.masterVolume = masterVolume;
 		Sound.setVolume(masterVolume);
 	}
-
+	
 	//Generates sound value from file
-	public static int generateSound(File file) throws Exception {
+	private static int generateSound(File file) throws Exception {
 		return Sound.playSample(file);
 	}
 

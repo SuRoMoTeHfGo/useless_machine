@@ -37,10 +37,5 @@ public class SoundReader {
 		soundReader.fetchSample(soundSample, 0);
 		return soundSample[0] > 0.9;
 	}
-
-	//Method for debugging
-	public float getValue() {
-		soundReader.fetchSample(soundSample, 0);
-		return soundSample[0];
-	} // getVaule
+	
 }

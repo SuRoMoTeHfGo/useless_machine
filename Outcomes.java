@@ -26,6 +26,21 @@ public class Outcomes{
 		this.iPod = iPod;
 	}
 
+	//The robot hides the lever from itself while it tries to toggle it
+	private void dodge(long ms) throws Exception {
+		executor.sleep(ms);
+		executor.moveArm(-90, 350, true);
+		executor.moveLever(35, 300);
+		executor.moveArm(0, 200, false);
+		executor.moveLever(70, 25);
+	}
+	//The robot lifts the arm a small distance to make it appear like it peeks at the lever
+	private void peek()throws Exception{
+		executor.moveArm(-50, 200, false);
+		executor.sleep(1750);
+		executor.moveArm(0, 350, false);
+		executor.sleep(750);
+	}
 
 	//Method classicPush is the "normal" hit lever outcome
 	public void classicPush() throws Exception {
@@ -128,23 +143,4 @@ public class Outcomes{
 		iPod.getSound(filename);
 	}
 
-	/*
-	*Local methods
-	*/
-
-	//The robot hides the lever from itself while it tries to toggle it
-	private void dodge(long ms) throws Exception {
-		executor.sleep(ms);
-		executor.moveArm(-90, 350, true);
-		executor.moveLever(35, 300);
-		executor.moveArm(0, 200, false);
-		executor.moveLever(70, 25);
-	}
-	//The robot lifts the arm a small distance to make it appear like it peeks at the lever
-	private void peek()throws Exception{
-		executor.moveArm(-50, 200, false);
-		executor.sleep(1750);
-		executor.moveArm(0, 350, false);
-		executor.sleep(750);
-	}
 }//class
