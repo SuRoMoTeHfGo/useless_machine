@@ -30,7 +30,7 @@ public class Commands {
 		Motor.C.rotateTo(0, false); // Return to original position
 	}
 	//Moves the "arm" to a desired position, at a desired speed
-	public void moveArm(int rotation, int motorspeed, boolean immediateReturn) throws Exception{
+	public void moveArm(int rotation, int motorspeed, boolean immediateReturn) throws Exception {
 		Motor.B.setSpeed(motorspeed);
 		Motor.B.rotateTo(rotation, immediateReturn); // Top: rotateTo(-100)
 	}
@@ -44,6 +44,5 @@ public class Commands {
 	public void sleep (long ms) throws Exception {
 		Delay.msDelay(ms);
 	}
-
 
 }//class

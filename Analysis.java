@@ -47,6 +47,7 @@ public class Analysis {
 			executor.moveLever(0, 200);
 		}
 	}
+	
 	/*
 	*The method below processes the fact that the lever has been hit
 	*It's intended to make the robot seem like it takes rushed decitions
@@ -137,8 +138,8 @@ public class Analysis {
 	//Calls and gathers the other functional methods, which will repeat infinitely
 	public void run() throws Exception {
 		while(true){
-		analyzePressure();
-		analyzeSpace();
+			analyzePressure();
+			analyzeSpace();
 		}
 	}//void
 

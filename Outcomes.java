@@ -15,7 +15,6 @@ import lejos.hardware.sensor.SensorModes;
 import lejos.robotics.SampleProvider;
 import lejos.hardware.sensor.*;
 
-
 public class Outcomes {
 	private Commands executor;
 	private AudioPlayer iPod;
@@ -34,8 +33,9 @@ public class Outcomes {
 		executor.moveArm(0, 200, false);
 		executor.moveLever(70, 25);
 	}
+	
 	//The robot lifts the arm a small distance to make it appear like it peeks at the lever
-	private void peek()throws Exception{
+	private void peek() throws Exception {
 		executor.moveArm(-50, 200, false);
 		executor.sleep(1750);
 		executor.moveArm(0, 350, false);

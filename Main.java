@@ -34,6 +34,7 @@ public class Main {
 
 		// Initiate program
 		brain.init();
+		
 		//Run program
 		brain.run();//logic is implemented in the class Analysis
 	}//void main
