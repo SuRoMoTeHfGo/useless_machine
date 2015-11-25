@@ -21,8 +21,6 @@ public class PressureReader {
 	private EV3TouchSensor touchSensor;
 	private SampleProvider touchReader;
 	private Port port;
-	private double value = 0.01;
-	boolean black = false;
 
 	//constructor
 	public PressureReader(Port port) {
@@ -32,7 +30,7 @@ public class PressureReader {
 		touchSample = new float[touchReader.sampleSize()]; // Register float table for EV3-touchsensor sample values
 	}
 
-	//method checks wether the touch sensor has been hit or not
+	//Checks wether the touch sensor has been hit or not
 	public boolean toggled() throws Exception {
 		touchReader.fetchSample(touchSample, 0); // Save values to first position of the EV3-uttrasonicsensor float table
 		return touchSample[0] > 0;

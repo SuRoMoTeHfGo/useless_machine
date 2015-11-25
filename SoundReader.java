@@ -19,12 +19,10 @@ import lejos.hardware.sensor.*;
 
 public class SoundReader {
 
+	private float[] soundSample;
 	private SampleProvider soundReader;
 	private	NXTSoundSensor soundSensor;
-	private float[] soundSample;
 	private Port port;
-	private float value;
-	boolean volume = false;
 
 	//Constructor
 	public SoundReader(Port port) {
@@ -34,15 +32,15 @@ public class SoundReader {
 		soundSample = new float[soundReader.sampleSize()];
 	}
 
-	//reads sound sample, returns true or false
-	public float getValue() {
-		soundReader.fetchSample(soundSample, 0);
-		return soundSample[0];
-	} // getVaule
-
+	//Returns true if it registers a sound above a certain decibel level
 	public boolean triggered() {
 		soundReader.fetchSample(soundSample, 0);
 		return soundSample[0] > 0.9;
 	}
 
+	//Method for debugging
+	public float getValue() {
+		soundReader.fetchSample(soundSample, 0);
+		return soundSample[0];
+	} // getVaule
 }
