@@ -101,6 +101,7 @@ public class Outcomes{
 		//eventually it hits the lever to normalize it
 		classicPush();
 	}
+	
 	//The robot peeks at the lever, then it hits and holds the lever for a second
 	public void holdPush()throws Exception{
 		executor.moveArm(-100, 300, false);

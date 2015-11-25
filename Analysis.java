@@ -63,45 +63,45 @@ public class Analysis {
 
 			int value = getRandomVal(0, 24);
 			switch (value) {
-				case 1 :
-					pusher.fastDodgePush();
-					break;
+			case 1 :
+				pusher.fastDodgePush();
+				break;
 
-				case 2:
-					pusher.fastPush();
-					break;
+			case 2:
+				pusher.fastPush();
+				break;
 
-				case 3:
-					pusher.slowPush();
-					break;
+			case 3:
+				pusher.slowPush();
+				break;
 
-				case 4:
-					pusher.peekPush();
-					break;
+			case 4:
+				pusher.peekPush();
+				break;
 
-				case 5:
-					pusher.dodgePush();
-					break;
+			case 5:
+				pusher.dodgePush();
+				break;
 
-				case 6:
-					pusher.delayPush();
-					break;
+			case 6:
+				pusher.delayPush();
+				break;
 
-				case 7:
-					pusher.cenaPush();
-					break;
+			case 7:
+				pusher.cenaPush();
+				break;
 
-				case 8:
-					pusher.longDelayPush();
-					break;
+			case 8:
+				pusher.longDelayPush();
+				break;
 
-				case 9:
-					pusher.holdPush();
-					break;
+			case 9:
+				pusher.holdPush();
+				break;
 
-				default:
-					pusher.classicPush();
-					break;
+			default:
+				pusher.classicPush();
+				break;
 			}//switch
 		}
 	}//void
@@ -123,8 +123,6 @@ public class Analysis {
 		}
 	}
 
-
-
 	//The init method lifts the hidden lever, thus the game is started
 	public void init() throws Exception {
 		iPod.getSound("startup.wav");
@@ -132,7 +130,7 @@ public class Analysis {
 	}
 	public void waitForInit()throws Exception{
 		while(!ears.triggered()) {
-		executor.moveLever(0, 200);
+			executor.moveLever(0, 200);
 		}
 	}
 
@@ -140,8 +138,6 @@ public class Analysis {
 	public void chooseOutcome() throws Exception {
 		analyzePressure();
 		analyzeSpace();
-		// analyzeSounds();
 	}//void
-
 
 }//class

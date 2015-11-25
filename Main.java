@@ -28,7 +28,7 @@ public class Main {
 		UltrasonicReader eyes = new UltrasonicReader(s3);
 		PressureReader leverStatus = new PressureReader(s4);
 		Commands executor = new Commands();
-		AudioPlayer iPod = new AudioPlayer(100);//set to master volume 100
+		AudioPlayer iPod = new AudioPlayer(100); //set to master volume 100
 		Outcomes pusher = new Outcomes(executor, iPod);
 		Analysis brain = new Analysis(leverStatus, eyes, ears, iPod, executor, pusher);
 
