@@ -33,13 +33,10 @@ public class Main {
 		Analysis brain = new Analysis(leverStatus, eyes, ears, iPod, executor, pusher);
 
 		//Looking for a sound to initiate program
-		while(!ears.triggered()) {
-			executor.moveLever(0, 200);
-		}
+		brain.waitForInit();
 
 		// Initiate program
 		brain.init();
-
 
 		/*
 		*We might consider a while loop with changable terms, as a way of ending the program sequence

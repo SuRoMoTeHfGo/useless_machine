@@ -123,21 +123,17 @@ public class Analysis {
 		}
 	}
 
-	/*
-	*The method analyzeSounds is supposed to be the robot's ears
-	*Desired reactions to certain sound levels could be moving or reacting with a sound effect
-	*/
-	private void analyzeSounds() throws Exception {
-		if (ears.triggered() && !leverStatus.toggled() && timer.elapsed() > 30000) {
-			pusher.hideLever(0);
-			pusher.driveAway(300, 800);
-		}
-	}
+
 
 	//The init method lifts the hidden lever, thus the game is started
 	public void init() throws Exception {
 		iPod.getSound("startup.wav");
 		executor.moveLever(70, 50);
+	}
+	public void waitForInit()throws Exception{
+		while(!ears.triggered()) {
+		executor.moveLever(0, 200);
+		}
 	}
 
 	//Method chooseOutcome calls the other functional methods
@@ -146,5 +142,6 @@ public class Analysis {
 		analyzeSpace();
 		// analyzeSounds();
 	}//void
+
 
 }//class
