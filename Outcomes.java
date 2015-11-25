@@ -16,12 +16,12 @@ import lejos.robotics.SampleProvider;
 import lejos.hardware.sensor.*;
 
 
-public class Outcomes{
+public class Outcomes {
 	private Commands executor;
 	private AudioPlayer iPod;
 
 	//Constructor
-	public Outcomes(Commands executor, AudioPlayer iPod){
+	public Outcomes(Commands executor, AudioPlayer iPod) {
 		this.executor = executor;
 		this.iPod = iPod;
 	}
@@ -39,6 +39,7 @@ public class Outcomes{
 		executor.moveArm(-100, 40, false);
 		executor.moveArm(0, 80, false);
 	}
+	
 	public void fastPush() throws Exception {
 		executor.moveArm(-100, 350, true);
 		executor.sleep(125);
@@ -67,6 +68,7 @@ public class Outcomes{
 		executor.sleep(1500);
 		executor.moveArm(0, 350, false);
 	}
+	
 	//The lever is pushed after a longer delay, to make it seem like the user has won.
 	public void longDelayPush() throws Exception {
 		//Wait for nearly a second before executing delayPush
@@ -79,6 +81,7 @@ public class Outcomes{
 		dodge(750);
 		peekPush();
 	}
+	
 	public void fastDodgePush() throws Exception {
 		dodge(150);
 		executor.sleep(400);
@@ -89,7 +92,6 @@ public class Outcomes{
 	public void cenaPush() throws Exception {
 		//Plays John Cena song
 		iPod.getSound("cena.wav");
-
 		executor.sleep(1550);//wait for 1,5 seconds
 		//Dodge a few times so the bot can't hit the lever
 		dodge(750);
@@ -103,7 +105,7 @@ public class Outcomes{
 	}
 
 	//The robot peeks at the lever, then it hits and holds the lever for a second
-	public void holdPush()throws Exception{
+	public void holdPush() throws Exception {
 		executor.moveArm(-100, 300, false);
 		executor.sleep(1750);
 		executor.moveArm(0, 250, false);
@@ -141,7 +143,7 @@ public class Outcomes{
 		executor.moveLever(70, 25);
 	}
 	//The robot lifts the arm a small distance to make it appear like it peeks at the lever
-	private void peek()throws Exception{
+	private void peek() throws Exception {
 		executor.moveArm(-50, 200, false);
 		executor.sleep(1750);
 		executor.moveArm(0, 350, false);

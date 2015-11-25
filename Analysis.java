@@ -51,14 +51,14 @@ public class Analysis {
 	//Calls and gathers the other functional methods, which will repeat infinitely
 	public void run() throws Exception {
 		while(true){
-		analyzePressure();
-		analyzeSpace();
+			analyzePressure();
+			analyzeSpace();
 		}
 	}//void
 
 
 	//Will loop until sound is registered
-	private void waitForInit()throws Exception{
+	private void waitForInit() throws Exception {
 		while(!ears.triggered()) {
 			executor.moveLever(0, 200);
 		}
@@ -142,6 +142,5 @@ public class Analysis {
 		randomVal = new Random();
 		return randomVal.nextInt(max - min) + min;
 	}
-
 
 }//class

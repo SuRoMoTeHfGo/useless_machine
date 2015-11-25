@@ -45,9 +45,9 @@ public class AudioPlayer {
 			public void run() {
 				try {
 					file = new File(filename);
-						int filelength = generateSound(file);
-					} catch (Exception e){
-						System.out.println(e);
+					int filelength = generateSound(file);
+				} catch (Exception e){
+					System.out.println(e);
 				}
 			}
 		};
