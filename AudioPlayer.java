@@ -37,6 +37,11 @@ public class AudioPlayer {
 	private static int generateSound(File file) throws Exception {
 		return Sound.playSample(file);
 	}
+	
+	//Set sound at desired sound file.
+	private void setSound(String name) {
+		filename = name;
+	}
 
 	//Runs sound sample, catching exceptions
 	public void getSound(String name) {
@@ -45,19 +50,14 @@ public class AudioPlayer {
 			public void run() {
 				try {
 					file = new File(filename);
-						int filelength = generateSound(file);
-					} catch (Exception e){
-						System.out.println(e);
+					int filelength = generateSound(file);
+				} catch (Exception e){
+					System.out.println(e);
 				}
 			}
 		};
 
 		new Thread(task).start();//Start thread
 	}//void
-
-	//Set sound at desired sound file.
-	private void setSound(String name) {
-		filename = name;
-	}
 
 }

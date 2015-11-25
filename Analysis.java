@@ -40,9 +40,9 @@ public class Analysis {
 		this.executor = executor;
 		this.pusher = pusher;
 	}
-	
+
 	//Will loop until sound is registered
-	private void waitForInit()throws Exception{
+	private void waitForInit() throws Exception {
 		while(!ears.triggered()) {
 			executor.moveLever(0, 200);
 		}
